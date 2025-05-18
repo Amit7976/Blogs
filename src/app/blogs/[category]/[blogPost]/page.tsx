@@ -91,7 +91,7 @@ export default function Page({ params }: { params: Promise<{ blogPost: string }>
 
   const fetchBlogData = async () => {
     try {
-      const response = await axios.get('/api/blogs/blog', {
+      const response = await axios.get('/api/blogs/fetchAllBlogs', {
         params: {
           blogPost: resolvedParams.blogPost,
         },

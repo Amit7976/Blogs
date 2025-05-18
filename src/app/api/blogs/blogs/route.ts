@@ -6,6 +6,7 @@ import path from "path";
 import { Buffer } from "buffer";
 import User from "@/models/userModel";
 import { auth } from "@/nextAuth/auth";
+import fs from "fs";
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -15,7 +16,7 @@ const LoadDb = async () => {
     await connect();
   } catch (error) {
     console.error("Failed to connect to the database:", error);
-    process.exit(1); // Exit process if connection fails
+    process.exit(1);
   }
 };
 
@@ -26,15 +27,15 @@ LoadDb();
 // GET BLOG DATA
 export async function GET(request: any) {
   try {
+    const blogID = request.nextUrl.searchParams.get("blogPost");
     const session = await auth();
 
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const blogID = request.nextUrl.searchParams.get("blogPost");
+    //-----------------------------------------------------------------------
 
-    // If specific blog ID is requested, fetch only if user owns it
     if (blogID) {
       const userOwnsBlog = await User.exists({
         _id: session.user.id,
@@ -52,11 +53,17 @@ export async function GET(request: any) {
       return NextResponse.json(blog);
     }
 
-    // Fetch all blogs owned by the user
+    //-----------------------------------------------------------------------
+
     const user = await User.findById(session.user.id).select("Blogs");
+
+    //-----------------------------------------------------------------------
+
     const blogs = await BlogModel.find({ _id: { $in: user.Blogs } })
       .sort({ date: -1 })
       .select("title image date status category _id created_at updated_at");
+
+    //-----------------------------------------------------------------------
 
     return NextResponse.json({ blogs });
   } catch (error) {
@@ -72,10 +79,6 @@ export async function GET(request: any) {
 
 /// POST BLOG DATA
 export async function POST(request: any) {
-  console.log("====================================");
-  console.log("Running");
-  console.log("====================================");
-
   const session = await auth();
   const userId = session?.user?.id;
   if (!userId) {
@@ -84,12 +87,12 @@ export async function POST(request: any) {
   }
   console.log("🔑 Authenticated User ID:", userId);
 
+  //-----------------------------------------------------------------------
+
   const formData = await request.formData();
   const timeStamp = Date.now();
 
-  console.log("====================================");
-  console.log(formData);
-  console.log("====================================");
+  //-----------------------------------------------------------------------
 
   const image = formData.get("image");
   let imgUrl = "/defaultBlog.png";
@@ -101,28 +104,29 @@ export async function POST(request: any) {
     imgUrl = `/${timeStamp}_${image.name}`;
   }
 
+  //-----------------------------------------------------------------------
+
   const blogData = {
     title: `${formData.get("title")}`,
     shortDescription: `${formData.get("shortDescription")}`,
     description: `${formData.get("description")}`,
-    category: `${formData.get("category")}`,
+    category: `${formData.get("category")?.toString().trim() || ""}`,
     tags: `${formData.get("tags")}`,
     status: `${formData.get("status")}`,
     image: `${imgUrl}`,
     imageTitle: `${formData.get("imageTitle")}`,
   };
 
+  //-----------------------------------------------------------------------
+
   const newPost = await BlogModel.create(blogData);
   console.log("Blog Saved");
 
-  const userData = await User.updateOne(
-    { _id: userId },
-    { $push: { Blogs: newPost._id } }
-  );
-  console.log("✅ Post ID pushed to user profile");
-  console.log('====================================');
-  console.log(userData);
-  console.log('====================================');
+  //-----------------------------------------------------------------------
+
+  await User.updateOne({ _id: userId }, { $push: { Blogs: newPost._id } });
+
+  //-----------------------------------------------------------------------
 
   return NextResponse.json({
     success: true,
@@ -140,13 +144,16 @@ export async function PUT(request: any) {
     const blogId = formData.get("blogId");
     const timeStamp = Date.now();
 
+    //-----------------------------------------------------------------------
+
     const session = await auth();
     if (!session || !session.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
     const userId = session.user.id;
-   
+
+    //-----------------------------------------------------------------------
+
     const blogExists = await User.exists({
       _id: userId,
       Blogs: blogId,
@@ -159,17 +166,17 @@ export async function PUT(request: any) {
       );
     }
 
-
-
     const blog = await BlogModel.findById(blogId);
     if (!blog) {
       return NextResponse.json({ success: false, msg: "Blog not found" });
     }
 
+    //-----------------------------------------------------------------------
+
     let imgUrl = blog.image;
     const newImage = formData.get("image");
 
-    // Handle image upload if a new image is provided
+    // Handle image upload
     if (newImage && newImage.size > 0) {
       const imageByteData = await newImage.arrayBuffer();
       const buffer = Buffer.from(imageByteData);
@@ -190,18 +197,24 @@ export async function PUT(request: any) {
       imgUrl = `/${timeStamp}_${newImage.name}`;
     }
 
+    //-----------------------------------------------------------------------
+
     const updatedBlogData = {
       title: formData.get("title")?.toString(),
       shortDescription: formData.get("shortDescription")?.toString(),
       description: formData.get("description")?.toString(),
-      category: formData.get("category")?.toString(),
+      category: `${formData.get("category")?.toString().trim() || ""}`,
       tags: formData.get("tags")?.toString(),
       status: formData.get("status")?.toString(),
       image: imgUrl,
       imageTitle: formData.get("imageTitle")?.toString(),
     };
 
+    //-----------------------------------------------------------------------
+
     await BlogModel.findByIdAndUpdate(blogId, updatedBlogData);
+
+    //-----------------------------------------------------------------------
 
     return NextResponse.json({
       success: true,
@@ -210,6 +223,79 @@ export async function PUT(request: any) {
   } catch (error) {
     console.error("Error updating blog:", error);
     return NextResponse.json({ success: false, msg: "Error updating blog" });
+  }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// DELETE BLOG
+export async function DELETE(request: any) {
+  try {
+    const session = await auth();
+    const userId = session?.user?.id;
+    if (!userId) {
+      console.log("[ERROR] User authentication failed.");
+      return NextResponse.json(
+        { error: "User ID is required" },
+        { status: 400 }
+      );
+    }
+    console.log("🔑 Authenticated User ID:", userId);
+
+    //-----------------------------------------------------------------------
+
+    const id = request.nextUrl.searchParams.get("id");
+    if (!id) {
+      return NextResponse.json(
+        { success: false, msg: "ID is required" },
+        { status: 400 }
+      );
+    }
+
+    //-----------------------------------------------------------------------
+
+    const blog = await BlogModel.findById(id);
+    if (!blog) {
+      return NextResponse.json(
+        { success: false, msg: "Blog not found" },
+        { status: 404 }
+      );
+    }
+
+    //-----------------------------------------------------------------------
+
+    const imagePath = `./public/images/blogs/${blog.image}`;
+    if (blog.image !== "/defaultBlog.png") {
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error(`Failed to delete image: ${err.message}`);
+        } else {
+          console.log(`Image deleted: ${imagePath}`);
+        }
+      });
+    }
+
+    //-----------------------------------------------------------------------
+
+    await User.updateOne({ _id: userId }, { $pull: { Blogs: id } });
+
+    //-----------------------------------------------------------------------
+
+    await BlogModel.findByIdAndDelete(id);
+    console.log("Blog Deleted");
+
+    //-----------------------------------------------------------------------
+
+    return NextResponse.json({
+      success: true,
+      msg: "Blog deleted successfully",
+    });
+  } catch (error: any) {
+    console.error(`Error deleting blog: ${error.message}`);
+    return NextResponse.json(
+      { success: false, msg: "Failed to delete blog" },
+      { status: 500 }
+    );
   }
 }
 

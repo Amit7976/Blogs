@@ -12,7 +12,7 @@ const LoadDb = async () => {
         await connect();
     } catch (error) {
         console.error('Failed to connect to the database:', error);
-        process.exit(1); // Exit process if connection fails
+        process.exit(1);
     }
 }
 
@@ -27,31 +27,58 @@ export async function GET(request: any) {
   const rawCategory = request.nextUrl.searchParams.get("category");
 
   if (rawCategory) {
+
+    // Fetch blogs by category
+
     try {
-      const category = decodeURIComponent(rawCategory); // Decode the category
+      const category = decodeURIComponent(rawCategory);
 
-      console.log("====================================");
-      console.log("Decoded Category:", category);
-      console.log("====================================");
+      //-----------------------------------------------------------------------
 
-      // Fetch blogs by category
       const blogs = await BlogModel.find({
         category: category,
         status: { $ne: "draft" },
       })
-        .sort({ date: -1 }) // or .sort({ created_at: -1 }) if your field is named like that
-        .limit(2) // Limit to 2 blogs
+        .sort({ date: -1 })
         .select("title image shortDescription _id");
+
+      //-----------------------------------------------------------------------
 
       return NextResponse.json({ blogs });
     } catch (error: any) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+
   } else {
-    return NextResponse.json(
-      { error: "Category is required" },
-      { status: 400 }
-    );
+
+    //  Fetch Category and Count the blogs Number in each Category
+
+    try {
+      const categories = await BlogModel.aggregate([
+        {
+          $match: { status: { $ne: "draft" } },
+        },
+        {
+          $group: {
+            _id: "$category",
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $project: {
+            category: "$_id",
+            count: 1,
+            _id: 0,
+          },
+        },
+      ]);
+
+      //-----------------------------------------------------------------------
+
+      return NextResponse.json({ categories });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
   }
 }
 

@@ -220,7 +220,7 @@ function MainContent() {
         if (imageRef.current) formData.append("image", imageRef.current);
 
         try {
-            const res = await axios.post("/api/blogs/admin_blog", formData);
+            const res = await axios.post("/api/blogs/blogs", formData);
             if (res.data.success && res.data.blogId) {
                 setHasCreatedDraft(true);
                 setBlogId(res.data.blogId);
@@ -286,7 +286,7 @@ function MainContent() {
         if (imageRef.current) formData.append("image", imageRef.current);
 
         try {
-            const res = await axios.put("/api/blogs/admin_blog", formData);
+            const res = await axios.put("/api/blogs/blogs", formData);
             if (res.data.success) toast.success("Draft auto-saved.");
             else toast.error("Auto-save failed.");
         } catch (err) {

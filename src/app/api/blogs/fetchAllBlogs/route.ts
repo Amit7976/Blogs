@@ -20,12 +20,25 @@ LoadDb();
 
 // GET BLOG DATA
 export async function GET(request: any) {
-  const latestBlogs = await BlogModel.find({ status: { $ne: "draft" } })
-    .sort({ date: -1 })
-    .limit(5)
-    .select("title image category shortDescription _id");
+  const blogID = request.nextUrl.searchParams.get("blogPost");
 
-  return NextResponse.json({ latestBlogs });
+  if (blogID) {
+    //-----------------------------------------------------------------------
+
+    const blog = await BlogModel.findById(blogID);
+    return NextResponse.json(blog);
+
+    //-----------------------------------------------------------------------
+  } else {
+    //-----------------------------------------------------------------------
+
+    const blogs = await BlogModel.find({ status: { $ne: "draft" } })
+      .sort({ date: -1 })
+      .select("title image category shortDescription _id");
+    return NextResponse.json({ blogs });
+
+    //-----------------------------------------------------------------------
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

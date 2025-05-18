@@ -101,7 +101,7 @@ function MainContent() {
   const [loadingBlogs, setLoadingBlogs] = useState(true);
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('/api/blogs/blog');
+      const response = await axios.get('/api/blogs/fetchAllBlogs');
       setBlogs(response.data.blogs);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -119,7 +119,7 @@ function MainContent() {
   const [loadingCategories, setLoadingCategories] = useState(true);
   const fetchBlogsCategories = async () => {
     try {
-      const response = await axios.get('/api/blogs/blogCategories');
+      const response = await axios.get('/api/blogs/category');
       setBlogsCategories(response.data.categories);
     } catch (error) {
       console.error('Error fetching blog categories:', error);

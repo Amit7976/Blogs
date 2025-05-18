@@ -96,7 +96,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
         const fetchBlogData = async () => {
             setDataLoading(true);
             try {
-                const response = await axios.get('/api/blogs/admin_blog', { params: { blogPost: resolvedParams.edit } });
+                const response = await axios.get('/api/blogs/blogs', { params: { blogPost: resolvedParams.edit } });
                 setData(response.data);
                 setContent(response.data.description);
                 console.log(response.data);
@@ -205,7 +205,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
         }
 
         try {
-            const response = await axios.put('/api/blogs/admin_blog', formData);
+            const response = await axios.put('/api/blogs/blogs', formData);
             if (response.data.success) {
                 toast.success("Blog has been Updated.")
             } else {
@@ -272,7 +272,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
         });
 
         try {
-            const response = await axios.put('/api/blogs/admin_blog', formData);
+            const response = await axios.put('/api/blogs/blogs', formData);
             if (response.data.success) {
                 setNotOwn(false);
                 console.log("Autosaved ✅");
@@ -354,7 +354,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
     return (
         notOwn ?
             <div className="h-screen w-screen fixed z-[100] bg-white flex items-center justify-center px-4">
-                <div className= "p-8 max-w-2xl text-center">
+                <div className="p-8 max-w-2xl text-center">
                     <h2 className="text-3xl font-bold text-red-500 mb-4">
                         Unauthorized Access
                     </h2>
@@ -370,7 +370,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
                     </Button>
                 </div>
             </div>
-      
+
             : dataLoading ? (
                 <div className="flex items-center justify-center h-screen" >
                     <Image src="/images/gif/loader.gif" alt="Loading" width={100} height={100} />

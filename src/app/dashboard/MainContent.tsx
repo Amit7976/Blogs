@@ -40,7 +40,7 @@ function MainContent() {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get('/api/blogs/admin_blog');
+      const response = await axios.get('/api/blogs/blogs');
       setBlogs(response.data.blogs);
       setFilteredBlogs(response.data.blogs); // Initialize filteredBlogs with all blogs
       console.log(response.data.blogs);
@@ -91,7 +91,7 @@ function MainContent() {
   const deleteBlog = async (blogId: string) => {
     if (confirm("Are you sure you want to delete this blog?")) {
       try {
-        const response = await axios.delete(`/api/blogs/delete?id=${blogId}`);
+        const response = await axios.delete(`/api/blogs/blogs?id=${blogId}`);
         if (response.data.success) {
           console.log('Blog deleted successfully');
           setBlogs(blogs.filter(blog => blog._id !== blogId));
@@ -181,10 +181,10 @@ function MainContent() {
                 filteredBlogs.length > 0 ? (
                   <div className="grid grid-cols-4 p-10 bg-transparent min-h-screen h-full gap-10">
                     {
-                        filteredBlogs.map((blog) => (
-                          <Card key={blog._id} blog={blog} deleteBlog={deleteBlog} />
-                        ))
-                    
+                      filteredBlogs.map((blog) => (
+                        <Card key={blog._id} blog={blog} deleteBlog={deleteBlog} />
+                      ))
+
                     }
                   </div>
                 ) : (
