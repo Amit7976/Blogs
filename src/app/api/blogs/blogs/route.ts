@@ -187,7 +187,7 @@ export async function PUT(request: any) {
       await writeFile(imagePath, buffer);
 
       // Delete the old image if it exists
-      if (blog.image) {
+      if (blog.image !== "/defaultBlog.png") {
         const oldImagePath = path.join("./public/images/blogs", blog.image);
         await unlink(oldImagePath).catch((err) => {
           console.error("Error deleting old image:", err);

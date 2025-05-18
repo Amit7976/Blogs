@@ -8,27 +8,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LuListFilter } from "react-icons/lu";
-import Card from "./Card";
+import Card from "@/components/dashboard/Card";
+import { Blog } from "@/lib/utils";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// INTERFACE OF BLOG FOR TYPESCRIPT
-interface Blog {
-  sponsored: boolean;
-  category: string;
-  _id: string;
-  title: string;
-  shortDescription: string;
-  image: string;
-  tags: string,
-  status: string,
-  created_at: Date;
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -42,8 +26,8 @@ function MainContent() {
     try {
       const response = await axios.get('/api/blogs/blogs');
       setBlogs(response.data.blogs);
-      setFilteredBlogs(response.data.blogs); // Initialize filteredBlogs with all blogs
-      console.log(response.data.blogs);
+      setFilteredBlogs(response.data.blogs);
+      //console.log(response.data.blogs);
     } catch (error) {
       console.error('Error fetching blogs:', error);
     } finally {
@@ -93,9 +77,9 @@ function MainContent() {
       try {
         const response = await axios.delete(`/api/blogs/blogs?id=${blogId}`);
         if (response.data.success) {
-          console.log('Blog deleted successfully');
+          //console.log('Blog deleted successfully');
           setBlogs(blogs.filter(blog => blog._id !== blogId));
-          setFilteredBlogs(filteredBlogs.filter(blog => blog._id !== blogId)); // Update filteredBlogs
+          setFilteredBlogs(filteredBlogs.filter(blog => blog._id !== blogId));
           alert("Blog deleted successfully");
         } else {
           console.error('Failed to delete blog:', response.data.msg);
@@ -108,7 +92,13 @@ function MainContent() {
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
   const router = useRouter();
+
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
   return (
     <div className="px-4 py-10 sm:px-6 lg:px-4 lg:py-4 col-span-10 overflow-y-scroll h-screen bg-slate-100">

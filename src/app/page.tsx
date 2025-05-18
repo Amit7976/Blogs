@@ -2,11 +2,15 @@ import React from 'react'
 import Page from './blogs/page'
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 function page() {
-  
+
   return (
-    <Page/>
+    <Page />
   )
+
 }
 
 export default page

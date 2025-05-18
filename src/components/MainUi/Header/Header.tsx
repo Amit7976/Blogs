@@ -1,18 +1,15 @@
 "use client"
-import Link from "next/link"
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button";
-
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import Image from "next/image";
+import Link from "next/link";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// INTERFACE OF HEADER PROPS FOR TYPESCRIPT
 interface HeaderProps {
   position: string;
 }

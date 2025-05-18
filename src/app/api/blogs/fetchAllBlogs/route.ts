@@ -21,7 +21,7 @@ LoadDb();
 // GET BLOG DATA
 export async function GET(request: any) {
   const blogID = request.nextUrl.searchParams.get("blogPost");
-
+  
   if (blogID) {
     //-----------------------------------------------------------------------
 

@@ -1,5 +1,4 @@
 "use client";
-
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -16,17 +15,14 @@ import { toast } from "sonner"
 
 
 const SignUpForm = () => {
-
-
-    // DEFINE TOAST FOR DISPLAYING MESSAGE
+  
  
     const router = useRouter();
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
-    // DEFINE THE ZOD SCHEMA
+  
     const SignUpSchema = z.object({
         firstName: z.string().min(3, "First name is required"),
         lastName: z.string().min(3, "Last name is required"),
