@@ -8,35 +8,35 @@ import mongoose from 'mongoose';
 const blogSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
+        default: ""
     },
     shortDescription: {
         type: String,
-        required: true,
+        default: ""
     },
     description: {
         type: String,
-        required: true,
+        default: ""
     },
     category: {
         type: String,
-        required: true,
+        default: ""
     },
     tags: {
         type: String,
-        required: true,
+        default: ""
     },
     image: {
         type: String,
-        required: true,
+        default:"defaultBlog.png"
     },
     imageTitle: {
         type: String,
-        required: true,
+        default: ""
     },
     status: {
         type: String,
-        required: true,
+        default: "draft"
     },
     updated_at: {
         type: Date,

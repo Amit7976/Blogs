@@ -4,8 +4,7 @@ import HeaderForBlog from "@/components/MainUi/Header/HeaderForBlog";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import React, { use, useEffect, useState } from "react";
 import axios from "axios";
 import { Skeleton } from "@/components/ui/skeleton";
 import { IoChevronBackOutline } from "react-icons/io5";
@@ -81,8 +80,10 @@ function LatestBlogPlaceholder() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const page = ({ params }: any) => {
 
+export default function Page({ params }: { params: Promise<{ blogPost: string }> }) {
+
+    const resolvedParams = use(params); // unwraps the Promise
 
   // FETCH MAIN BLOG COMPLETE DATA
   const [data, setData] = useState<Blog | null>(null);
@@ -92,7 +93,7 @@ const page = ({ params }: any) => {
     try {
       const response = await axios.get('/api/blogs/blog', {
         params: {
-          blogPost: params.blogPost,
+          blogPost: resolvedParams.blogPost,
         },
       })
       setData(response.data);
@@ -155,7 +156,7 @@ const page = ({ params }: any) => {
     try {
       const response = await axios.get('/api/blogs/relatedBlogs', {
         params: {
-          blogPost: params.blogPost,
+          blogPost: resolvedParams.blogPost,
         },
       })
       setRelatedBlogs(response.data.relatedBlogs);
@@ -320,20 +321,15 @@ const page = ({ params }: any) => {
           <div className="w-3/4 h-1.5 bg-gradient-to-l from-gray-300 to-gray-400 rounded-full mt-1.5"></div>
         </div>
 
-        <Carousel
-          className="h-auto"
-          opts={{
-            align: "start",
-            dragFree: false,
-          }}
-        >
-          <CarouselContent className="flex">
+        <div
+          className="h-auto">
+          <div className="flex">
             {relatedBlogsLoading ? (
               Array.from({ length: 3 }).map((_, index) => (
                 <RelatedBlogPlaceholder key={index} />
               ))
             ) : (relatedBlogs.map((RelatedBlog, index) => (
-              <CarouselItem key={index} className="basis-1/3 pl-5 flex-grow">
+              <div key={index} className="basis-1/3 pl-5 flex-grow">
                 <div
                   data-aos="fade-up"
                   data-aos-offset="0"
@@ -381,12 +377,12 @@ const page = ({ params }: any) => {
                     </p>
                   </a>
                 </div>
-              </CarouselItem>
+              </div>
             )))}
-          </CarouselContent>
-          <CarouselPrevious className="select-none" />
-          <CarouselNext className="select-none" />
-        </Carousel>
+          </div>
+          <div className="select-none" />
+          <div className="select-none" />
+        </div>
       </div>
       {/* End Related Blogs */}
 
@@ -397,4 +393,3 @@ const page = ({ params }: any) => {
   );
 }
 
-export default page;

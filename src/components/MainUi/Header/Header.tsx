@@ -24,25 +24,13 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ position }) => {
 
 
-  // HANDEL HEADER SHADOW AND HEIGHT ANIMATION
-  const [hasShadow, setHasShadow] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setHasShadow(window.scrollY > 0);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   return (
-    <header className={`flex flex-wrap md:justify-start md:flex-nowrap w-full ${position} top-0 z-50 transition-all duration-500 ${hasShadow ? "shadow-xl bg-white py-2 lg:py-3" : "bg-[#ffffff91] pt-2 lg:pt-5"
+    <header className={`flex flex-wrap md:justify-start md:flex-nowrap w-full ${position} top-0 z-50 transition-all duration-500 shadow-xl bg-white py-2 lg:py-3"
       }`}>
-      <nav className="relative w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center pl-4 md:px-20 mx-auto">
+      <nav className="relative w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center pl-4 py-1.5 md:px-20 mx-auto">
         <div className="md:col-span-3">
 
           <Link href="/" className="flex items-center gap-2 " prefetch={false}>
@@ -51,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
               alt="Jobboost Logo"
               width={200}
               height={35}
-              className={`${hasShadow ? "w-2 sm:w-3 md:w-4" : "w-2 sm:w-3 md:w-6"} duration-700`}
+              className={"w-2 sm:w-3 md:w-6"}
             />
             <span className="text-xl font-bold">Assignment</span>
           </Link>
@@ -88,14 +76,6 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
                   <div>
                     <Link
                       className="relative inline-block text-black hover:text-gray-600 focus:outline-none focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300 before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 hover:before:bg-[#fc4b02]"
-                      href="/pages/candidate"
-                    >
-                      Resources
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      className="relative inline-block text-black hover:text-gray-600 focus:outline-none focus:text-gray-600 dark:text-white dark:hover:text-neutral-300 dark:focus:text-neutral-300 before:absolute before:bottom-0.5 before:start-0 before:-z-[1] before:w-full before:h-1 hover:before:bg-[#fc4b02]"
                       href="/pages/blogs"
                     >
                       Blog
@@ -125,14 +105,6 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
                 href="/doc/assignment.pdf"
               >
                 Use Case
-              </Link>
-            </div>
-            <div>
-              <Link
-                className="relative font-medium text-black hover:text-[#FC520C] outline-none duration-300 px-4"
-                href="/pages/candidates"
-              >
-                Resources
               </Link>
             </div>
             <div>

@@ -2,10 +2,8 @@
 import BlogCard from "../BlogCard";
 import axios from "axios";
 import Footer from "@/components/MainUi/Footer/Footer";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import HeaderForBlog from "@/components/MainUi/Header/HeaderForBlog";
-import AnnouncementBanner from "@/components/MainUi/AnnouncementBanner/AnnouncementBanner";
-import BlogSubFooter from "@/components/MainUi/Footer/BlogSubFooter";
 import { Skeleton } from "@/components/ui/skeleton";
 
 
@@ -56,7 +54,10 @@ function AllBlogPlaceholder() {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const page = ({ params }: any) => {
+
+export default function Page({ params }: { params: Promise<{ category: string }> }) {
+
+    const resolvedParams = use(params); // unwraps the Promise
 
 
     // FETCH BLOGS FOR SPECIFIC CATEGORY 
@@ -67,7 +68,7 @@ const page = ({ params }: any) => {
         try {
             const response = await axios.get('/api/blogs/category', {
                 params: {
-                    category: params.category,
+                    category: resolvedParams.category,
                 },
             });
             setData(response.data.blogs);
@@ -95,13 +96,13 @@ const page = ({ params }: any) => {
             {/* End Header For Blog */}
 
             {/* Announcement Banner */}
-            <AnnouncementBanner />
+            {/* <AnnouncementBanner /> */}
             {/* End Announcement Banner */}
 
             {/* Main Content */}
             <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20 mx-auto">
                 <h4 className="mb-16 mt-0 text-4xl font-bold tracking-wide capitalize">
-                    {params.category} Blogs
+                    {decodeURIComponent(resolvedParams.category)} <span className="text-gray-500">Blogs</span>
                 </h4>
                 <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
                     {loadingBlogs ? (
@@ -117,7 +118,7 @@ const page = ({ params }: any) => {
                                     shortDescription={blog.shortDescription}
                                     imageUrl={blog.image}
                                     href={blog._id}
-                                    category={blog.category}
+                                    category={decodeURIComponent(resolvedParams.category)}
                                 />
                             ))
                         ) : (
@@ -131,7 +132,7 @@ const page = ({ params }: any) => {
             {/* End Main Content */}
 
             {/* Blog Sub Footer */}
-            <BlogSubFooter />
+            {/* <BlogSubFooter /> */}
             {/* End Blog Section*/}
 
             {/* Footer */}
@@ -140,5 +141,3 @@ const page = ({ params }: any) => {
         </>
     );
 };
-
-export default page;

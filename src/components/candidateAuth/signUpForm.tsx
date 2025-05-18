@@ -3,12 +3,12 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { useToast } from "../ui/use-toast";
 import { useRouter } from "next/navigation";
 import { MdAlternateEmail } from "react-icons/md";
 import { Checkbox } from "@/components/ui/checkbox"
 import { credentialsSignUp } from "./actions/register";
 import { z } from "zod";
+import { toast } from "sonner"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +19,7 @@ const SignUpForm = () => {
 
 
     // DEFINE TOAST FOR DISPLAYING MESSAGE
-    const { toast } = useToast();
+ 
     const router = useRouter();
 
 
@@ -75,10 +75,7 @@ const SignUpForm = () => {
                     if (!result.success) {
                         // Display error messages
                         result.error.errors.forEach((error) =>
-                            toast({
-                                title: error.message,
-                                variant: "default",
-                            })
+                            toast.error(error.message)
                         );
                         return;
                     }
@@ -88,17 +85,11 @@ const SignUpForm = () => {
                     const error = await credentialsSignUp(firstName, lastName, email, password);
 
                     if (!error) {
-                        toast({
-                            title: "Register success",
-                            variant: "success",
-                        });
+                        toast.success("Register success");
 
                         router.refresh();
                     } else {
-                        toast({
-                            title: "Registration failed",
-                            variant: "default",
-                        });
+                        toast.error("Registration failed");
                     }
 
                 }}

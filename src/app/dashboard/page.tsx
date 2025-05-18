@@ -1,0 +1,26 @@
+import { auth } from "@/nextAuth/auth";
+import MainContent from "./MainContent";
+import SideBar from "./SideBar";
+import { redirect } from "next/navigation";
+
+const page = async () => {
+
+
+    const session = await auth();
+
+    if (!session?.user) {
+        redirect("/auth/login")
+    }
+
+
+    return (
+        <>
+            <div className="grid grid-cols-12">
+                <SideBar session={session} />
+                <MainContent />
+            </div>
+        </>
+    )
+}
+
+export default page;

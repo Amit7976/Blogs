@@ -13,11 +13,11 @@ const page = async () => {
 
 
   // CHECK IF CANDIDATE IS LOGGED IN, IF YES THEN REDIRECT HIM TO THE DASHBOARD
-  // const session = await auth();
+  const session = await auth();
 
-  // if (session?.user) {
-  //   redirect("/dashboard")
-  // }
+  if (session?.user) {
+    redirect("/dashboard")
+  }
 
 
  

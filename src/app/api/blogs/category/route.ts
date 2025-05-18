@@ -24,27 +24,35 @@ LoadDb();
 
 // GET BLOG DATA
 export async function GET(request: any) {
-    const category = request.nextUrl.searchParams.get("category");
+  const rawCategory = request.nextUrl.searchParams.get("category");
 
-    if (category) {
-        try {
-            // Fetch blogs by category
-            const blogs = await BlogModel.find({
-                category: category,
-                status: { $ne: 'draft' }
-            })
-            .sort({ date: -1 })
-            .select('title image shortDescription _id');
+  if (rawCategory) {
+    try {
+      const category = decodeURIComponent(rawCategory); // Decode the category
 
-            return NextResponse.json({ blogs });
+      console.log("====================================");
+      console.log("Decoded Category:", category);
+      console.log("====================================");
 
-        } catch (error: any) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
-        }
-    } else {
-        return NextResponse.json({ error: 'Category is required' }, { status: 400 });
+      // Fetch blogs by category
+      const blogs = await BlogModel.find({
+        category: category,
+        status: { $ne: "draft" },
+      })
+        .sort({ date: -1 }) // or .sort({ created_at: -1 }) if your field is named like that
+        .limit(2) // Limit to 2 blogs
+        .select("title image shortDescription _id");
+
+      return NextResponse.json({ blogs });
+    } catch (error: any) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
+  } else {
+    return NextResponse.json(
+      { error: "Category is required" },
+      { status: 400 }
+    );
+  }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

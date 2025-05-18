@@ -86,7 +86,7 @@ interface Blog {
   shortDescription: string;
   image: string;
   tags: string;
-  createdAt: Date;
+  created_at: Date;
 }
 
 
@@ -94,8 +94,8 @@ interface Blog {
 
 
 function MainContent() {
-  
-  
+
+
   // FETCH ALL BLOGS
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
@@ -109,8 +109,8 @@ function MainContent() {
       setLoadingBlogs(false);
     }
   };
-  
-  
+
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -128,29 +128,15 @@ function MainContent() {
     }
   };
 
-  
+
+  const topTwoRecentBlogs = blogs
+    .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    .slice(0, 2);
+
+
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  // FETCH PRIORITY BLOGS
-  const [priorityBlogs, setPriorityBlogs] = useState<Blog[]>([]);
-  const [loadingPriorityBlogs, setLoadingPriorityBlogs] = useState(true);
-  const fetchPriorityBlogs = async () => {
-    try {
-      const response = await axios.get('/api/blogs/priority');
-      const blogs = response.data.blogs;
-      const sortedBlogs = blogs.sort((a: Blog, b: Blog) => {
-        if (a.sponsored && !b.sponsored) return -1;
-        if (!a.sponsored && b.sponsored) return 1;
-        return 0;
-      });
-      setPriorityBlogs(sortedBlogs);
-    } catch (error) {
-      console.error('Error fetching priority blogs:', error);
-    } finally {
-      setLoadingPriorityBlogs(false);
-    }
-  };
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -158,7 +144,7 @@ function MainContent() {
 
   useEffect(() => {
     const fetchData = async () => {
-      await Promise.all([fetchBlogs(), fetchBlogsCategories(), fetchPriorityBlogs()]);
+      await Promise.all([fetchBlogs(), fetchBlogsCategories()]);
     };
     fetchData();
   }, []);
@@ -166,20 +152,20 @@ function MainContent() {
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
+
 
   return (
     <>
       {/* Priority Blogs */}
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pt-20 lg:pb-10 mx-auto">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {loadingPriorityBlogs ? (
+          {loadingBlogs ? (
             Array.from({ length: 2 }).map((_, index) => (
               <PriorityBlogPlaceholder key={index} />
             ))
-          ) : (
-            priorityBlogs.map((blog, index) => (
-              <Link className="group" href={`/pages/blogs/${blog.category}/${blog._id}`} key={index}>
+          ) : ( 
+              topTwoRecentBlogs.map((blog, index) => (
+              <Link className="group" href={`/blogs/${blog.category}/${blog._id}`} key={index}>
                 <div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
                   <Image
                     width={800}
@@ -222,13 +208,12 @@ function MainContent() {
               </Link>
             ))
           )}
-          <Link
+          <div
             className="group relative flex flex-col w-full min-h-60 bg-center bg-cover rounded-xl hover:shadow-lg transition border-2"
-            href="#"
           >
             <div className="w-full h-72 col-span-1">
               <Image
-                src="/images/Random/weAreHiring.svg"
+                src="/images/logo/electricIcon.svg"
                 alt="Accelerate Your Business"
                 width={800}
                 height={800}
@@ -237,20 +222,19 @@ function MainContent() {
             </div>
             <div className="flex flex-col px-5 py-6 gap-2 col-span-2">
               <h1 className="text-2xl font-bold text-[#2b2b2b]">
-                Need Office/Working Staff?
+                Full Stack Assignment for Internship Hiring
               </h1>
               <p className="text-sm font-medium my-2 text-gray-400">
-                Save your valuable time and find the most suitable candidate for
-                your company. Jobboost makes that it is possible to find the
-                correct personnel for your team.
+                Design and develop a full-stack application that allows users to write, edit, save, and publish
+                blogs with an auto-save draft feature.
               </p>
               <div className="flex gap-2 items-center flex-wrap select-none">
-                <Button className="px-4 py-2 mt-5 text-sm font-semibold text-white bg-[#FE4A03] hover:bg-orange-700 rounded-full flex items-center gap-2">
-                  Post a Job Role <FaChevronRight />
-                </Button>
+                <Link href={"/doc/assignment.pdf"} className="px-4 py-2 mt-5 text-sm font-semibold text-white bg-[#FE4A03] hover:bg-orange-700 rounded-full flex items-center gap-2">
+                  Assignment Details <FaChevronRight />
+                </Link>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
       {/* Ebd Priority Blogs */}
@@ -291,7 +275,7 @@ function MainContent() {
             ))
           ) : (
             blogsCategories.map((category, index) => (
-              <Link href={`/pages/blogs/${category.category}`} key={index} className='text-base font-medium p-3 px-10 bg-gray-100 rounded-full'>
+              <Link href={`/blogs/${category.category}`} key={index} className='text-base font-medium p-3 px-10 bg-gray-100 rounded-full'>
                 {category.category} <span className="opacity-60 text-sm pl-1">({category.count})</span>
               </Link>
             ))

@@ -1,11 +1,8 @@
 "use client"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -40,56 +37,15 @@ function Footer() {
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-  // DEFINE TOAST FOR DISPLAYING MESSAGE
-  const { toast } = useToast()
-
-
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   // POST SUBSCRIBER EMAIL WHEN SUBMIT THE FORM
   async function onSubmit(formData: z.infer<typeof FormSchema>) {
     setLoading(true); // Set loading state to true when form submission starts
-
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('email', formData.newsletter);
-
-      const response = await axios.post('/api/newsletter', formDataToSend);
-      const responseData = response.data;
-
-      if (responseData.success) {
-        toast({
-          title: "Hurray🎉 You Subscribed Jobboost",
-          description: "You have successfully subscribed to the JobBoost newsletter.",
-          variant: "success",
-        });
-      } else {
-        toast({
-          title: "Submission Failed",
-          description: responseData.msg,
-          variant: "destructive",
-        });
-      }
-    } catch (error: any) {
-      if (error.response && error.response.status === 409) {
-        toast({
-          title: "Submission Failed",
-          description: error.response.data.msg,
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "An unexpected error occurred",
-          description: error.message || "Failed to save FAQ",
-          variant: "destructive",
-        });
-      }
-      console.error('Error saving FAQ:', error);
-    } finally {
-      setLoading(false); // Reset loading state after form submission is completed
-    }
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }
 
 
@@ -194,83 +150,20 @@ function Footer() {
       {/* <Toaster /> */}
 
       <div className="container mx-auto lg:px-4">
-        {/* Desktop View */}
-        <div className="hidden md:grid md:grid-cols-5 gap-10">
-          {Object.entries(menuItems).map(([section, items]) => (
-            <ul key={section} className="">
-              <li>
-                <h6 className="text-base font-bold text-black select-none">
-                  {section}
-                </h6>
-              </li>
-              {items.map(({ text, link }) => (
-                <li
-                  key={text}
-                  className={`my-2.5  ${link ? "opacity-100" : "opacity-40"}`}
-                >
-                  {link ? (
-                    <a
-                      href={link}
-                      className="text-sm font-medium text-gray-500"
-                    >
-                      {text}
-                    </a>
-                  ) : (
-                    <span className="text-sm font-medium text-gray-500">
-                      {text}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-
-        {/* Mobile View */}
-        <div className="md:hidden">
-          {Object.entries(menuItems).map(([section, items]) => (
-            <Accordion key={section} type="single" collapsible>
-              <AccordionItem value="{section}">
-                <AccordionTrigger className="hover:no-underline text-base font-semibold text-black">{section}</AccordionTrigger>
-                <AccordionContent>
-                  {items.map(({ text, link }) => (
-                    <div key={text} className={`w-full ${link ? "opacity-100" : "opacity-40"}`}>
-                      {link ? (
-                        <Link
-                          href={link}
-                          className="text-base font-semibold hover:underline text-gray-600 w-full h-full block py-2.5 pl-5"
-                        >
-                          {text}
-                        </Link>
-                      ) : (
-                        <span className="text-base font-medium text-gray-600 w-full h-full block py-2.5 pl-5">{text}</span>
-                      )}
-                    </div>
-                  ))}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          ))}
-        </div>
-
 
 
         {/* Footer Bottom Section */}
         <div className="bg-gray-100 text-black rounded-xl p-9 my-10 ">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <Link href="/" className="flex items-center w-full">
-              <Image
-                src="/images/logo/logo_short.svg"
-                alt="Jobboost Logo"
-                width={80}
-                height={80}
-                className="w-32 h-auto"
-              />
-              <div>
-                <h3 className="text-2xl font-bold">Jobboost</h3>
-                <p className="text-base mt-1">The Ultimate for Job Seekers</p>
-              </div>
-            </Link>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8"><Link href="/" className="flex items-center gap-2 " prefetch={false}>
+            <Image
+              src="/images/logo/electricIcon.svg"
+              alt="Jobboost Logo"
+              width={200}
+              height={35}
+              className={"w-2 sm:w-3 md:w-10"}
+            />
+            <span className="text-2xl font-bold">Assignment</span>
+          </Link>
 
             <div>
               <Form {...form}>
@@ -323,39 +216,29 @@ function Footer() {
 
         <div className="w-full border-t border-gray-600 py-10">
           <p className="mt-2 font-medium text-sm text-gray-500">
-            © 2023 <Link href={"/"}>Jobboost</Link> Business Corporation.{" "}
-            <Link href={"/"}>Jobboost</Link> and the{" "}
-            <Link href={"/"}>Jobboost</Link> logo are registered trademarks of
+            © 2023 <Link href={"/"}>assignment</Link> .{" "}
+            <Link href={"/"}>assignment</Link> and the{" "}
+            <Link href={"/"}>assignment</Link> logo are registered trademarks of
             the company. All services are currently available only within
             India. For any inquiries or support, please contact us through our{" "}
-            <Link href={"/contact"} className="text-[#FF4A02]">
+            <Link href={"https://portfolio-amit7976s-projects.vercel.app/contact"} className="text-[#FF4A02]">
               Contact Page
             </Link>
-            . Please see our{" "}
-            <Link href={"/terms"} className="text-[#FF4A02]">
-              Terms of Service
-            </Link>{" "}
+            . Please see our
+            Terms of Service
             for more details.
           </p>
           <p className="mt-5 font-medium text-sm text-gray-500">
-            Read our{" "}
-            <Link href={"/communityGuidelines"} className="text-[#FF4A02]">
-              Community Guidelines
-            </Link>{" "}
-            and{" "}
-            <Link href={"/privacy"} className="text-[#FF4A02]">
-              Privacy Policy
-            </Link>{" "}
+            Read our
+            Community Guidelines
+            and
+            Privacy Policy
             to understand how we operate and manage your information. For
-            detailed information on how we protect your data, visit our{" "}
-            <Link href={"/privacy"} className="text-[#FF4A02]">
-              Privacy Policy
-            </Link>
-            . By using our services, you agree to our{" "}
-            <Link href={"/terms"} className="text-[#FF4A02]">
-              Terms of Service
-            </Link>{" "}
-            . Thank you for choosing JobBoost.
+            detailed information on how we protect your data, visit our
+            Privacy Policy
+            . By using our services, you agree to our
+            Terms of Service
+            . Thank you for choosing Us.
           </p>
         </div>
       </div>

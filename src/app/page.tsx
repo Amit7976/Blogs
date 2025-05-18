@@ -3,6 +3,7 @@ import Page from './blogs/page'
 
 
 function page() {
+  
   return (
     <Page/>
   )

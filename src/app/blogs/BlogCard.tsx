@@ -22,7 +22,7 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ title, shortDescription, imageUrl, href, category }) => (
   <>
-    <Link className="group rounded-xl overflow-hidden" href={`/pages/blogs/${category}/${href}`}>
+    <Link className="group rounded-xl overflow-hidden" href={`/blogs/${category}/${href}`}>
       <div className="sm:flex">
         <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
           <Image

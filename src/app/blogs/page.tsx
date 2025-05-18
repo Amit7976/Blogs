@@ -2,12 +2,8 @@ import Footer from "@/components/MainUi/Footer/Footer";
 import React from "react";
 import MainContent from "./MainContent";
 import HeaderForBlog from "@/components/MainUi/Header/HeaderForBlog";
-// import AnnouncementBanner from "@/components/MainUi/AnnouncementBanner/AnnouncementBanner";
-import BlogSubFooter from "@/components/MainUi/Footer/BlogSubFooter";
-
-
-// 
-import { redirect } from "next/navigation";
+import Header from "@/components/MainUi/Header/Header";
+import { auth } from "@/nextAuth/auth";
 //
 
 
@@ -17,17 +13,20 @@ import { redirect } from "next/navigation";
 
 const Page = async () => {
 
-  //
+  const session = await auth();
 
-  // await verifyToken() ? '' : redirect('/auth/companyLogin');
 
-  //
 
 
   return (
     <>
       {/* Header For Blog */}
-      <HeaderForBlog />
+      {(!session?.user) ?
+        <Header position="sticky" />
+        :
+        <HeaderForBlog />
+      }
+
       {/* End Header For Blog */}
 
       {/* Announcement Banner */}
@@ -39,9 +38,9 @@ const Page = async () => {
       {/* End Main Content */}
 
       {/* BLOG SUB FOOTER */}
-      <BlogSubFooter />
+      {/* <BlogSubFooter /> */}
       {/* End BLOG SUB FOOTER */}
-
+    
       {/* Footer */}
       <Footer />
       {/* End Footer */}

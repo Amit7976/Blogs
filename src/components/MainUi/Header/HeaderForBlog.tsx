@@ -4,13 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 
 import Image from "next/image";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+
 import { Input } from "@/components/ui/input";
 import { BiSearch } from "react-icons/bi";
 
@@ -33,35 +27,31 @@ function HeaderForBlog() {
             />
             <span className="text-xl font-bold">Assignment</span>
           </Link>
-          <NavigationMenu>
-            <NavigationMenuList className="gap-1">
-              <NavigationMenuItem>
-                <Link href="/blogs" passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Home
-                  </NavigationMenuLink>
+          <div className="flex items-center gap-2">
+              <div className="hover:bg-slate-100 rounded-sm duration-300">
+                <Link href="/dashboard" passHref>
+                  <p className="text-sm font-semibold px-5 py-1.5 duration-300 text-gray-600 hover:text-black">
+                    Dashboard
+                  </p>
                 </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
+              </div>
+              <div className="hover:bg-slate-100 rounded-sm duration-300">
                 <Link href="/doc/assignment.pdf" passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  <p className="text-sm font-semibold px-5 py-1.5 duration-300 text-gray-600 hover:text-black">
                     Use Case
-                  </NavigationMenuLink>
+                  </p>
                 </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
+              </div>
+              <div className="hover:bg-slate-100 rounded-sm duration-300">
                 <Link href="https://portfolio-amit7976s-projects.vercel.app/" passHref>
-                  <NavigationMenuLink
-                    className={
-                      navigationMenuTriggerStyle() + " text-orange-500"
-                    }
+                  <p
+                    className={"text-sm font-semibold px-5 py-1.5 duration-300 text-orange-500 hover:text-orange-600"}
                   >
                     About Us
-                  </NavigationMenuLink>
+                  </p>
                 </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+              </div>
+          </div>
 
           <div className="flex items-center relative w-40">
             <Input

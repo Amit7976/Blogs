@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    Blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "BlogModel" }],
     date: {
         type: Date,
         default: () => Date.now()

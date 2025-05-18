@@ -3,12 +3,12 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { useToast } from "../ui/use-toast";
 import { credentialsLogin } from "./actions/login";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner"
+
 
 const LoginForm = () => {
-    const { toast } = useToast();
     const router = useRouter();
 
 
@@ -17,25 +17,16 @@ const LoginForm = () => {
         const password = formData.get("password") as string;
 
         if (!email || !password) {
-            return toast({
-                title: "Please provide all fields",
-                variant: "destructive",
-            });
+            return toast.warning("Please provide all fields");
         }
 
         const error = await credentialsLogin(email, password);
 
         if (!error) {
-            toast({
-                title: "Login success",
-                variant: "success",
-            });
+            toast.success("Login success");
             router.refresh();
         } else {
-            toast({
-                title: "Login failed",
-                variant: "destructive",
-            });
+            toast.error("Login failed");
         }
     };
 
