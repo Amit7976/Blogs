@@ -295,7 +295,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
 
                     <div className="w-full relative top-0">
                         <form onSubmit={onSubmitHandler}>
-                            <div className="rounded-xl dark:bg-neutral-900 grid grid-cols-12 gap-5 p-5" style={{ backgroundImage: "url(/images/random/pattern-randomized.svg)" }}>
+                            <div className="rounded-xl dark:bg-neutral-900 grid grid-cols-12 gap-5 p-5 bg-dots dark:bg-dots">
 
                                 <SideBar
                                     data={{

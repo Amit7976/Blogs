@@ -52,9 +52,9 @@ function Footer() {
 
 
   return (
-    <footer className="bg-white text-black mt-40 p-0 lg:p-10">
+    <footer className="bg-white dark:bg-neutral-900 text-black mt-40 p-0 lg:p-10">
       <div className="container mx-auto lg:px-4">
-        <div className="bg-gray-100 text-black rounded-xl p-9 my-10 ">
+        <div className="bg-gray-100 dark:bg-neutral-800 text-black rounded-xl p-9 my-10 ">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8"><Link href="/" className="flex items-center gap-2 " prefetch={false}>
             <Image
               src="/images/logo/electricIcon.svg"
@@ -63,7 +63,7 @@ function Footer() {
               height={35}
               className={"w-2 sm:w-3 md:w-10"}
             />
-            <span className="text-2xl font-bold">Assignment</span>
+            <span className="text-2xl font-bold text-black dark:text-white">Assignment</span>
           </Link>
 
             <div>
@@ -74,8 +74,8 @@ function Footer() {
                     name="newsletter"
                     render={({ field }) => (
                       <FormItem>
-                        <h3 className="text-2xl font-bold text-black">Newsletter</h3>
-                        <FormDescription className="text-sm font-medium text-gray-500 mt-1 w-full">
+                        <h3 className="text-2xl font-bold text-black dark:text-white">Newsletter</h3>
+                        <FormDescription className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-1 w-full">
                           Subscribe to our newsletter to get latest updates and news
                         </FormDescription>
                         <div className="gap-4 items-center mt-3">
@@ -95,7 +95,7 @@ function Footer() {
                   />
                   <Button
                     type="submit"
-                    className="bg-[#FC4C02] rounded-full py-2 mt-2 w-fit h-10 disabled:opacity-90"
+                    className="bg-[#FC4C02] text-white rounded-full py-2 mt-2 w-fit h-10 disabled:opacity-90"
                     disabled={loading}
                   >
                     {loading ? (

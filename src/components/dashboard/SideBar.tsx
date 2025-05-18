@@ -27,7 +27,7 @@ export default function Sidebar({ session }: { session: any }) {
 
     
     return (
-        <aside className='bg-white h-screen col-span-2 w-full rounded-r-xl'>
+        <aside className='bg-white dark:bg-neutral-900 h-screen col-span-2 w-full rounded-r-xl'>
             <div className="md:col-span-3 pt-10 pb-5 px-4 flex flex-col justify-between h-full">
 
                 <Link href={"/"} className="flex items-center gap-2 w-full justify-center">
@@ -42,22 +42,22 @@ export default function Sidebar({ session }: { session: any }) {
                 </Link>
 
                 <div className="space-y-10">
-                    <Link href={"/dashboard"} className='hover:bg-orange-500 hover:shadow-xl bg-white text-black hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
+                    <Link href={"/dashboard"} className='hover:bg-orange-500 hover:shadow-xl text-black dark:text-white hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
                         <p className='text-lg font-semibold flex gap-2 items-center'><TbLayoutDashboard />Dashboard</p>
                     </Link>
-                    <Link href={"/blogs/add_blog"} className='hover:bg-orange-500 hover:shadow-xl bg-white text-black hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
+                    <Link href={"/blogs/add_blog"} className='hover:bg-orange-500 hover:shadow-xl text-black dark:text-white hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
                         <p className='text-lg font-semibold flex gap-2 items-center'> <IoAdd /> Add Blog</p>
                     </Link>
-                    <Link href={"/blogs"} className='hover:bg-orange-500 hover:shadow-xl bg-white text-black hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
+                    <Link href={"/blogs"} className='hover:bg-orange-500 hover:shadow-xl text-black dark:text-white hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
                         <p className='text-lg font-semibold flex gap-2 items-center'><BiCategoryAlt /> Blogs</p>
                     </Link>
-                    <Link href={"/blogs/analytics"} className='hover:bg-orange-500 hover:shadow-xl bg-white text-black hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
+                    <Link href={"/blogs/analytics"} className='hover:bg-orange-500 hover:shadow-xl text-black dark:text-white hover:text-white duration-300 rounded-lg p-2.5 w-full flex justify-center'>
                         <p className='text-lg font-semibold flex gap-2 items-center'><TbDeviceAnalytics /> Analytics</p>
                     </Link>
                 </div>
 
-                <div className='bg-white text-black duration-300 rounded-lg p-2 w-full space-y-2'>
-                    <p className='text-lg font-semibold text-center'>{session?.user?.name}</p>
+                <div className='duration-300 rounded-lg p-2 w-full space-y-2'>
+                    <p className='text-lg font-semibold text-center text-black dark:text-white'>{session?.user?.name}</p>
                     <p className='text-sm font-medium text-gray-500 text-center line-clamp-1'>{session?.user?.email}</p>
                     <Button onClick={handleLogout} className='w-full h-10 text-base mt-5 cursor-pointer flex justify-center gap-2'>
                         <FaArrowRightFromBracket /> Logout

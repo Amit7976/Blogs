@@ -119,7 +119,7 @@ function PriorityBlogs({ blogs, loadingBlogs }: CategoryProps) {
                             />
                         </div>
                         <div className="flex flex-col px-5 py-6 gap-2 col-span-2">
-                            <h1 className="text-2xl font-bold text-[#2b2b2b]">
+                            <h1 className="text-2xl font-bold text-[#2b2b2b] dark:text-white">
                                 Full Stack Assignment for Internship Hiring
                             </h1>
                             <p className="text-sm font-medium my-2 text-gray-400">

@@ -131,7 +131,7 @@ const SignUpForm = () => {
                             <Input
                                 type="email"
                                 name="email"
-                                className="border-2 rounded-full px-12 w-full h-14 text-sm hover:shadow-lg duration-500 transition-shadow font-semibold tracking-wide placeholder:text-gray-400 placeholder:font-normal"
+                                className="border-2 rounded-full px-12 w-full h-14 text-sm hover:shadow-lg duration-500 transition-shadow font-semibold tracking-wide placeholder:text-gray-400 placeholder:font-normal dark:text-white"
                                 placeholder="Enter your email address"
                                 autoComplete="email"
                             />

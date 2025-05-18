@@ -12,7 +12,6 @@ import MainContent from './MainContent';
 const page = async () => {
 
 
-  // CHECK IF CANDIDATE IS LOGGED IN, IF YES THEN REDIRECT HIM TO THE DASHBOARD
   const session = await auth();
 
   if (session?.user) {
@@ -20,18 +19,16 @@ const page = async () => {
   }
 
 
-  // CHECK IF EMPLOYER IS LOGGED IN, IF YES THEN REDIRECT HIM TO THE DASHBOARD
-  // await verifyToken() ? redirect('/company/dashboard') : '';
-
-
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   return (
     <>
-      <Header position='relative' />
-      <MainContent />
-      <Footer />
+      <div className='bg-white dark:bg-neutral-900'>
+        <Header position='relative' />
+        <MainContent />
+        <Footer />
+     </div>
     </>
   )
 }

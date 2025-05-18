@@ -15,7 +15,7 @@ function HeaderForBlog() {
     <>
       <header
         className={
-          "bg-white text-black dark:bg-gray-900 dark:text-[#111827] py-4 px-6 md:px-10 flex items-center justify-between top-0 shadow-xl z-[99] sticky"
+          "bg-white text-black dark:bg-neutral-800 dark:text-[#111827] py-4 px-6 md:px-10 flex items-center justify-between top-0 shadow-xl z-[99] sticky"
         }
       >
         <div className="flex gap-5 w-full justify-between">
@@ -27,28 +27,26 @@ function HeaderForBlog() {
               height={35}
               className="w-2 sm:w-3 md:w-6"
             />
-            <span className="text-xl font-bold">Assignment</span>
+            <span className="text-xl font-bold text-black dark:text-white">Assignment</span>
           </Link>
           <div className="flex items-center gap-2">
-              <div className="hover:bg-slate-100 rounded-sm duration-300">
+              <div className="hover:bg-slate-100 dark:hover:bg-neutral-900 rounded-sm duration-300">
                 <Link href="/dashboard" passHref>
-                  <p className="text-sm font-semibold px-5 py-1.5 duration-300 text-gray-600 hover:text-black">
+                  <p className="text-sm font-semibold px-5 py-1.5 duration-300 text-gray-600 hover:text-black dark:text-white">
                     Dashboard
                   </p>
                 </Link>
               </div>
-              <div className="hover:bg-slate-100 rounded-sm duration-300">
+              <div className="hover:bg-slate-100 dark:hover:bg-neutral-900 rounded-sm duration-300">
                 <Link href="/doc/assignment.pdf" passHref>
-                  <p className="text-sm font-semibold px-5 py-1.5 duration-300 text-gray-600 hover:text-black">
+                <p className="text-sm font-semibold px-5 py-1.5 duration-300 text-gray-600 hover:text-black dark:text-white">
                     Use Case
                   </p>
                 </Link>
               </div>
-              <div className="hover:bg-slate-100 rounded-sm duration-300">
+              <div className="hover:bg-slate-100 dark:hover:bg-neutral-900 rounded-sm duration-300">
                 <Link href="https://portfolio-amit7976s-projects.vercel.app/" passHref>
-                  <p
-                    className={"text-sm font-semibold px-5 py-1.5 duration-300 text-orange-500 hover:text-orange-600"}
-                  >
+                  <p className={"text-sm font-semibold px-5 py-1.5 duration-300 text-orange-500 hover:text-orange-600"}>
                     About Us
                   </p>
                 </Link>

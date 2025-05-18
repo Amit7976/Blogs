@@ -101,11 +101,11 @@ function MainContent({ resolvedParams }: blogsProps) {
                                                 {data && data.category}
                                             </a>
                                             <p className="text-xs sm:text-sm text-gray-800 dark:text-neutral-200">
-                                                {data && new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                                {data && new Date(data.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                             </p>
                                         </div>
 
-                                        <p className="text-lg text-gray-800">{data && data.shortDescription}</p>
+                                        <p className="text-lg text-gray-800 dark:text-gray-300">{data && data.shortDescription}</p>
 
                                         <figure>
                                             {data && (

@@ -11,28 +11,32 @@ import RelatedBlogs from "./RelatedBlogs";
 
 
 export default function Page({ params }: { params: Promise<{ blogPost: string }> }) {
-  
+
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-  
+
+
   const resolvedParams = use(params);
-  
+
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
   return (
     <>
-      
-      <HeaderForBlog />
 
-      <MainContent resolvedParams={{ blogPost: resolvedParams.blogPost }} />
+      <div className="bg-white dark:bg-neutral-900">
+
+        <HeaderForBlog />
+
+        <MainContent resolvedParams={{ blogPost: resolvedParams.blogPost }} />
+
+        <RelatedBlogs resolvedParams={{ blogPost: resolvedParams.blogPost }} />
+
+        <Footer />
+
+      </div>
       
-      <RelatedBlogs resolvedParams={{ blogPost: resolvedParams.blogPost }} />
-     
-      <Footer />
-     
     </>
   );
 }

@@ -25,9 +25,9 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
 
 
   return (
-    <header className={`flex flex-wrap md:justify-start md:flex-nowrap w-full ${position} top-0 z-50 transition-all duration-500 shadow-xl bg-white py-2 lg:py-3"
+    <header className={`flex flex-wrap md:justify-start md:flex-nowrap w-full ${position} top-0 z-50 transition-all duration-500 shadow-xl bg-white dark:bg-neutral-800 py-2 lg:py-3"
       }`}>
-      <nav className="relative w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center pl-4 py-1.5 md:px-20 mx-auto">
+      <nav className="relative w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center pl-4 py-1.5 md:px-20 mx-auto ">
         <div className="md:col-span-3">
 
           <Link href="/" className="flex items-center gap-2 " prefetch={false}>
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
           <Button type="button" asChild className="py-2 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-sm bg-white border border-gray-200 text-black hover:bg-gray-500 hover:text-white focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:hover:bg-white/10 dark:text-white dark:hover:text-white dark:focus:text-white duration-300">
             <Link href="/auth/login">Login</Link>
           </Button>
-          <Button type="button" asChild className="py-2 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-sm border border-gray-200 bg-[#fe2222] text-white hover:bg-white hover:text-black focus:outline-none focus:bg-[#f15413] transition disabled:opacity-50 disabled:pointer-events-none duration-300">
+          <Button type="button" asChild className="py-2 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-sm border border-gray-200 dark:border-gray-600 bg-[#fe2222] text-white hover:bg-white hover:text-black focus:outline-none focus:bg-[#f15413] transition disabled:opacity-50 disabled:pointer-events-none duration-300">
             <Link href="/auth/register">Get Started</Link>
           </Button>
 
@@ -98,7 +98,7 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
           <div className="flex flex-row justify-center items-center">
             <div>
               <Link
-                className="relative font-medium text-black hover:text-[#FC520C] outline-none duration-300 px-4"
+                className="relative font-medium text-black dark:text-white hover:text-[#FC520C] dark:hover:text-[#FC520C] outline-none duration-300 px-4"
                 href="/doc/assignment.pdf"
               >
                 Use Case
@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
             </div>
             <div>
               <Link
-                className="relative font-medium text-black hover:text-[#FC520C] outline-none duration-300 px-4"
+                className="relative font-medium text-black dark:text-white hover:text-[#FC520C] dark:hover:text-[#FC520C] outline-none duration-300 px-4"
                 href="/pages/blogs"
               >
                 Blog
@@ -114,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
             </div>
             <div>
               <Link
-                className="relative font-medium text-black hover:text-[#FC520C] outline-none duration-300 px-4"
+                className="relative font-medium text-black dark:text-white hover:text-[#FC520C] dark:hover:text-[#FC520C] outline-none duration-300 px-4"
                 href="https://portfolio-amit7976s-projects.vercel.app/"
               >
                 About us

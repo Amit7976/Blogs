@@ -128,7 +128,7 @@ function MainContent() {
 
             <div className="w-full relative top-0">
                 <form onSubmit={autoSaveDraft}>
-                    <div className="rounded-xl dark:bg-neutral-900 grid grid-cols-12 gap-5 p-5" style={{ backgroundImage: "url(/images/random/pattern-randomized.svg)" }}>
+                    <div className="rounded-xl dark:bg-neutral-900 grid grid-cols-12 gap-5 p-5 bg-dots dark:bg-dots">
                         <SideBar data={data} setData={setData} onChangeHandler={onChangeHandler} handleChange={handleChange} image={image} setImage={setImage} content={content || ''} use={"Publish"} />
 
                         <div className="pt-0 py-4 sm:pb-2 col-span-9 w-5xl mx-auto">

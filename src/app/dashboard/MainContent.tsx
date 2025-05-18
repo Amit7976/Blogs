@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { LuListFilter } from "react-icons/lu";
 import Card from "@/components/dashboard/Card";
 import { Blog } from "@/lib/utils";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,14 +102,14 @@ function MainContent() {
 
 
   return (
-    <div className="px-4 py-10 sm:px-6 lg:px-4 lg:py-4 col-span-10 overflow-y-scroll h-screen bg-slate-100">
+    <div className="px-4 py-10 sm:px-6 lg:px-4 lg:py-4 col-span-10 overflow-y-scroll h-screen bg-slate-100 dark:bg-neutral-800">
       <div className="flex flex-col">
         <div className="overflow-x-auto">
           <div className="min-w-full inline-block align-middle">
-            <div className="bg-transparent border-gray-200 rounded-xl overflow-hidden dark:bg-neutral-900 dark:border-neutral-700">
+            <div className="bg-transparent rounded-xl overflow-hidden">
               {/* Sub Header */}
               <div className="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
-                <h2 className="text-4xl font-bold text-black">Dashboard</h2>
+                <h2 className="text-4xl font-bold text-black dark:text-white">Dashboard</h2>
                 <div className="flex items-center gap-10">
 
                   <Button
@@ -157,6 +158,8 @@ function MainContent() {
                     </DropdownMenuContent>
                   </DropdownMenu>
                   {/* End Filter Blogs */}
+
+                  <ModeToggle />
                 </div>
               </div>
               {/* End Sub Header */}
@@ -182,7 +185,7 @@ function MainContent() {
                     <p className="text-2xl text-gray-400">
                       You have not share any blog post yet
                     </p>
-                    <p className="text-xl font-semibold text-orange-400 py-2 px-5 hover:bg-gray-100 rounded-lg">
+                    <p className="text-xl font-semibold text-orange-400 py-2 px-5 hover:bg-gray-100 dark:hover:bg-black rounded-lg">
                       <Link href="/blogs/add_blog">Add New Blog</Link>
                     </p>
                   </div>

@@ -1,12 +1,6 @@
-import { auth, signIn } from '@/nextAuth/auth'
 import LoginForm from '@/components/candidateAuth/loginForm'
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { redirect } from 'next/navigation'
-import { FaAnglesRight, FaArrowRightLong } from 'react-icons/fa6'
-import { ImFacebook } from 'react-icons/im'
-import { SiGithub } from 'react-icons/si'
-import { TbBrandGoogleFilled } from 'react-icons/tb'
+import { FaAnglesRight } from 'react-icons/fa6'
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -14,18 +8,7 @@ import { TbBrandGoogleFilled } from 'react-icons/tb'
 
 
 const MainContent = async () => {
-
-
-    // CHECK IF USER IS ALREADY LOGGED IN, IF YES THEN REDIRECT HIM TO THE DASHBOARD
-    // const session = await auth();
-
-    // if (session?.user) {
-    //     redirect("/candidate/dashboard")
-    // }
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
 
     return (
         <>

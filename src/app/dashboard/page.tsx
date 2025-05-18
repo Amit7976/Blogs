@@ -26,7 +26,7 @@ const page = async () => {
 
     return (
         <>
-            <div className="grid grid-cols-12">
+            <div className="grid grid-cols-12 bg-white dark:bg-neutral-800">
 
                 <SideBar session={session} />
 

@@ -21,7 +21,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ blog, deleteBlog }) => {
     return (
-        <div className="bg-white hover:bg-gray-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 w-full col-span-1 h-fit p-2 rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-100 hover:scale-105 will-change-transform duration-300">
+        <div className="bg-white hover:bg-gray-50 dark:bg-neutral-900 w-full col-span-1 h-fit p-2 rounded-lg shadow-lg hover:shadow-2xl hover:shadow-red-100 dark:hover:shadow-gray-950 hover:scale-105 dark:hover:scale-101 will-change-transform duration-300">
 
             <Link href={`/blogs/${blog.category}/${blog._id}`} target="_blank">
                 <Image width={300} height={300} className="shrink-0 w-full aspect-video rounded-lg" src={`/images/blogs${blog.image}`} alt="Blog Image" />
@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ blog, deleteBlog }) => {
 
             <div className="pt-2">
                 <Link href={`/blogs/${blog.category}/${blog._id}`} target="_blank">
-                    <span className="text-lg text-gray-600 dark:text-neutral-600 line-clamp-1 font-semibold">{blog.title}</span>
+                    <span className="text-lg text-gray-600 dark:text-neutral-300 line-clamp-1 font-semibold">{blog.title}</span>
                 </Link>
             </div>
 
@@ -52,14 +52,14 @@ const Card: React.FC<CardProps> = ({ blog, deleteBlog }) => {
             <div className="pt-3">
                 <div className="flex items-center justify-between gap-1">
                     <Link href={`/blogs/${blog.category}/${blog._id}`} className="w-full">
-                        <MdOutlineRemoveRedEye className="bg-gray-50 hover:bg-gray-100 hover:text-gray-600 duration-300 active:scale-90 rounded w-full h-10 p-2.5 cursor-pointer" />
+                        <MdOutlineRemoveRedEye className="bg-gray-50 hover:bg-gray-100 hover:text-gray-600 duration-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 active:scale-90 rounded w-full h-10 p-2.5 cursor-pointer" />
                     </Link>
 
                     <Link href={`/blogs/edit/${blog._id}`} className="w-full">
-                        <TbEdit className="bg-gray-50 hover:bg-blue-100 hover:text-gray-600 duration-300 active:scale-90 rounded w-full h-10 p-2.5 cursor-pointer" />
+                        <TbEdit className="bg-gray-50 hover:bg-blue-100 dark:bg-neutral-800 dark:hover:bg-neutral-900 hover:text-gray-600 duration-300 active:scale-90 rounded w-full h-10 p-2.5 cursor-pointer" />
                     </Link>
 
-                    <MdOutlineDeleteOutline className="bg-gray-50 hover:bg-red-100 hover:text-gray-600 duration-300 active:scale-90 rounded w-full h-10 p-2.5 cursor-pointer" onClick={() => deleteBlog(blog._id)} />
+                    <MdOutlineDeleteOutline className="bg-gray-50 hover:bg-red-100 hover:text-gray-600 duration-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 active:scale-90 rounded w-full h-10 p-2.5 cursor-pointer" onClick={() => deleteBlog(blog._id)} />
                 </div>
             </div>
             

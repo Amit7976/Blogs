@@ -13,11 +13,15 @@ export default function Page({ params }: { params: Promise<{ category: string }>
     return (
         <>
 
-            <HeaderForBlog />
+            <div className="bg-white dark:bg-neutral-900">
 
-            <MainContent params={params} />
+                <HeaderForBlog />
 
-            <Footer />
+                <MainContent params={params} />
+
+                <Footer />
+
+            </div>
             
         </>
     );

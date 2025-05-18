@@ -25,13 +25,15 @@ const Page = async () => {
   return (
     <>
 
-      {(!session?.user) ? <Header position="sticky" /> : <HeaderForBlog />}
+      <div className="bg-white dark:bg-neutral-900">
+        {(!session?.user) ? <Header position="sticky" /> : <HeaderForBlog />}
 
-      <MainContent />
-      
-      <Category />
+        <MainContent />
 
-      <Footer />
+        <Category />
+
+        <Footer />
+     </div>
 
     </>
   );

@@ -69,7 +69,7 @@ function Category() {
                         ))
                     ) : (
                         blogsCategories.map((category, index) => (
-                            <Link href={`/blogs/${category.category}`} key={index} className='text-base font-medium p-3 px-10 bg-gray-100 rounded-full'>
+                            <Link href={`/blogs/${category.category}`} key={index} className='text-base font-medium p-3 px-10 bg-gray-100 dark:bg-neutral-800 rounded-full'>
                                 {category.category} <span className="opacity-60 text-sm pl-1">({category.count})</span>
                             </Link>
                         ))

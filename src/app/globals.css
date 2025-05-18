@@ -128,4 +128,17 @@
   h3 {
     @apply text-xl font-bold;
   }
+
+  .dark\:bg-dots {
+    &:is(.dark *) {
+      background-image: radial-gradient(rgb(47, 47, 47) 2px, transparent 5px);
+      background-size: 20px 20px; /* adjust spacing here */
+      background-repeat: repeat;
+    }
+  }
+  .bg-dots {
+    background-image: radial-gradient(rgb(234, 234, 234) 2px, transparent 5px);
+    background-size: 20px 20px; /* adjust spacing here */
+    background-repeat: repeat;
+  }
 }

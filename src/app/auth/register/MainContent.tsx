@@ -1,13 +1,7 @@
-import { auth, signIn } from '@/nextAuth/auth'
 import SignUpForm from '@/components/candidateAuth/signUpForm'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-import { FaAnglesRight, FaArrowRightLong } from 'react-icons/fa6'
-import { ImFacebook } from 'react-icons/im'
-import { SiGithub, SiTicktick } from 'react-icons/si'
-import { TbBrandGoogleFilled } from 'react-icons/tb'
 import Image from 'next/image'
+import { FaAnglesRight } from 'react-icons/fa6'
+import { SiTicktick } from 'react-icons/si'
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -15,27 +9,16 @@ import Image from 'next/image'
 
 
 const MainContent = async () => {
-
-
-    // CHECK IF USER IS ALREADY LOGGED IN, IF YES THEN REDIRECT HIM TO THE DASHBOARD
-    // const session = await auth();
-
-    // if (session?.user) {
-    //     redirect("/candidate/dashboard")
-    // }
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  
 
     return (
         <>
-            <section className="bg-white">
+            <section className="bg-white dark:bg-neutral-900">
                 <div className="grid grid-cols-1 lg:grid-cols-7 items-stretch">
-                    <div className="flex items-center justify-center px-4 pt-10 h-auto bg-white sm:px-6 lg:px-8 sm:py-16 lg:py-10 col-span-4">
+                    <div className="flex items-center justify-center px-4 pt-10 h-auto bg-white dark:bg-neutral-900 sm:px-6 lg:px-8 sm:py-16 lg:py-10 col-span-4">
                         <div className="xl:w-full px-10">
 
-                            <h2 className="text-3xl font-bold leading-tight text-gray-400 sm:text-4xl flex flex-col gap-2"><span className='pl-3'>Register new</span><span className='text-6xl text-black'>Account</span></h2>
+                            <h2 className="text-3xl font-bold leading-tight text-gray-400 sm:text-4xl flex flex-col gap-2"><span className='pl-3'>Register new</span><span className='text-6xl text-black dark:text-white'>Account</span></h2>
                            
 
                             <SignUpForm />

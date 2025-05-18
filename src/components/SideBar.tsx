@@ -131,7 +131,7 @@ function SideBar({ data, setData, onChangeHandler, handleChange, image, setImage
 
     return (
         <>
-            <div className="pt-20 p-4 sm:p-7 col-span-3 bg-white shadow-2xl rounded-2xl h-screen overflow-y-scroll sticky top-0">
+            <div className="pt-20 p-4 sm:p-7 col-span-3 bg-white dark:bg-neutral-900 shadow-2xl rounded-2xl h-screen overflow-y-scroll sticky top-0">
                 <div className="space-y-4 sm:space-y-6">
                     <div className="space-y-4">
                         <label htmlFor="upload-images" className="inline-block text-lg font-medium text-gray-800 mt-2.5 dark:text-neutral-200">
@@ -188,7 +188,7 @@ function SideBar({ data, setData, onChangeHandler, handleChange, image, setImage
                                     <Image src="/images/gif/loader2.gif" alt="Loading" width={400} height={200} />
                                 </div>
                             ) : (blogsCategories.length > 0 && blogsCategories.map((category, index) => (
-                                <p key={index} className='text-xs font-medium py-1.5 px-5 bg-gray-200 rounded-lg cursor-pointer hover:shadow-lg active:shadow-sm duration-200 select-none' onClick={() => onCategoryClick(category.category)}>
+                                <p key={index} className='text-xs font-medium py-1.5 px-5 bg-gray-200 dark:bg-neutral-800 rounded-lg cursor-pointer hover:shadow-lg active:shadow-sm duration-200 select-none' onClick={() => onCategoryClick(category.category)}>
                                     {category.category}
                                     <span className="opacity-60 text-xs pl-1">({category.count})</span>
                                 </p>
