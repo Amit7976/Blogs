@@ -16,13 +16,14 @@ import { TbLogs } from "react-icons/tb";
 
 interface HeaderProps {
   position: string;
+  blogpost?: boolean;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const Header: React.FC<HeaderProps> = ({ position }) => {
+const Header: React.FC<HeaderProps> = ({ position, blogpost = false }) => {
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,10 +50,10 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
 
 
         <div className="flex items-center gap-x-1 md:gap-x-2 ms-auto py-1 md:ps-6 md:order-3 md:col-span-3">
-          <Button type="button" asChild className="py-2 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-sm bg-white border border-gray-200 text-black hover:bg-gray-500 hover:text-white focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:hover:bg-white/10 dark:text-white dark:hover:text-white dark:focus:text-white duration-300">
+          <Button type="button" asChild hidden={blogpost} className="py-2 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-sm bg-white border border-gray-200 text-black hover:bg-gray-500 hover:text-white focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:hover:bg-white/10 dark:text-white dark:hover:text-white dark:focus:text-white duration-300">
             <Link href="/auth/login">Login</Link>
           </Button>
-          <Button type="button" asChild className="hidden lg:block py-2 px-5 items-center gap-x-2 text-sm font-medium rounded-sm border border-gray-200 dark:border-gray-600 bg-[#fe2222] text-white hover:bg-white hover:text-black focus:outline-none focus:bg-[#f15413] transition disabled:opacity-50 disabled:pointer-events-none duration-300">
+          <Button type="button" asChild hidden={blogpost} className="hidden lg:block py-2 px-5 items-center gap-x-2 text-sm font-medium rounded-sm border border-gray-200 dark:border-gray-600 bg-[#fe2222] text-white hover:bg-white hover:text-black focus:outline-none focus:bg-[#f15413] transition disabled:opacity-50 disabled:pointer-events-none duration-300">
             <Link href="/auth/register">Get Started</Link>
           </Button>
           <ModeToggle />

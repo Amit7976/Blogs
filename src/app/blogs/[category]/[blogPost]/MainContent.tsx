@@ -34,7 +34,7 @@ function MainContent({ resolvedParams }: blogsProps) {
         try {
             const response = await axios.get('/api/blogs/fetchAllBlogs', {
                 params: {
-                    blogPost: resolvedParams,
+                    blogPost: resolvedParams.blogPost,
                 },
             })
             setData(response.data);
@@ -79,7 +79,7 @@ function MainContent({ resolvedParams }: blogsProps) {
                                 <Button
                                     variant={"ghost"}
                                     onClick={() => router.back()}
-                                    className="inline-flex items-center gap-x-1.5 mt-2 text-sm text-gray-600 decoration-2 dark:text-gray-500 select-none"
+                                    className="inline-flex items-center gap-x-1.5 mt-2 text-sm text-gray-600 decoration-2 dark:text-gray-500 select-none cursor-pointer"
                                     style={{ padding: 0 }}
                                 >
                                     <IoChevronBackOutline className="flex-shrink-0 size-4" />

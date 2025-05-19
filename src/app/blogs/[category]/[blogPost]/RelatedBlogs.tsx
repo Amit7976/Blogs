@@ -58,7 +58,7 @@ function RelatedBlogs({ resolvedParams }: RelatedBlogsProps) {
         try {
             const response = await axios.get('/api/blogs/relatedBlogs', {
                 params: {
-                    blogPost: resolvedParams,
+                    blogPost: resolvedParams.blogPost,
                 },
             })
             setRelatedBlogs(response.data.relatedBlogs);
