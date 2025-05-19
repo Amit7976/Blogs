@@ -34,7 +34,7 @@ function MainContent({ resolvedParams }: blogsProps) {
         try {
             const response = await axios.get('/api/blogs/fetchAllBlogs', {
                 params: {
-                    blogPost: resolvedParams.blogPost,
+                    blogPost: resolvedParams,
                 },
             })
             setData(response.data);

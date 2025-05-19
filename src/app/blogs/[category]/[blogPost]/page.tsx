@@ -35,9 +35,7 @@ export default async function Page(props: { params: paramsType }) {
     <>
 
       <div className="bg-white dark:bg-neutral-900">
-
-        <h1>The Blog Post Id is: {blogPost}</h1>
-
+        
         {!session?.user ? <Header position="sticky" /> : <HeaderForBlog />}
 
         <MainContent resolvedParams={{ blogPost: blogPost }} />
