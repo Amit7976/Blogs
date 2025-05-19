@@ -212,8 +212,7 @@ function SideBar({ data, setData, onChangeHandler, handleChange, image, setImage
                                     !data.shortDescription ||
                                     !content ||
                                     !data.category ||
-                                    !data.tags ||
-                                    !image
+                                    !data.tags
                                 }
                             >
                                 <SelectTrigger className="py-2 px-5 h-12 w-full border-gray-200 shadow-sm rounded-xl text-sm border-2 font-medium tracking-wider">

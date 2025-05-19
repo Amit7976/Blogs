@@ -1,5 +1,6 @@
 "use client"
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "@/components/ui/ModeToggle";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ position }) => {
           <Button type="button" asChild className="py-2 px-5 inline-flex items-center gap-x-2 text-sm font-medium rounded-sm border border-gray-200 dark:border-gray-600 bg-[#fe2222] text-white hover:bg-white hover:text-black focus:outline-none focus:bg-[#f15413] transition disabled:opacity-50 disabled:pointer-events-none duration-300">
             <Link href="/auth/register">Get Started</Link>
           </Button>
-
+          <ModeToggle />
           <div className="md:hidden">
 
             <Popover>

@@ -9,6 +9,8 @@ import useAutoSaveDraft from '@/components/blogAction/useAutoSave';
 import handleLocalstorage from '@/components/blogAction/handleLocalstorage';
 import extractBlogId from '@/components/blogAction/extractBlogId';
 import preventReload from '@/components/blogAction/preventReload';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,10 +118,47 @@ function MainContent() {
 
 
     // Auto Save Function With 30sec or 5 sec inactive
-    const { autoSaveDraft } = useAutoSaveDraft({ data, content, image, hashValue, setHashValue, blogId, setBlogId });
+    useAutoSaveDraft({ data, content, image, hashValue, setHashValue, blogId, setBlogId });
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    // UPDATE THE DATA WHEN SUBMIT THE FORM
+    const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        //console.log(data);
+        const formData = new FormData();
+
+        formData.append('description', content || '');
+        formData.append('blogId', blogId);
+        (Object.keys(data) as Array<keyof Blog>).forEach((key) => {
+            const value = data[key];
+            if (value !== undefined && key !== 'image') {
+                formData.append(key as string, value!.toString());
+            }
+        });
+
+        if (image) {
+            formData.append('image', image);
+
+            if (data && data.image) {
+                formData.append('oldImage', data.image);
+            }
+        }
+
+        try {
+            const response = await axios.put('/api/blogs/blogs', formData);
+            if (response.data.success) {
+                toast.success("Blog has been Updated.")
+            } else {
+                toast.error("Please try again later! Server is on High Demand");
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
+    };
 
 
     return (
@@ -127,7 +166,7 @@ function MainContent() {
             <HeaderForBlog />
 
             <div className="w-full relative top-0">
-                <form onSubmit={autoSaveDraft}>
+                <form onSubmit={onSubmitHandler}>
                     <div className="rounded-xl dark:bg-neutral-900 grid grid-cols-12 gap-5 p-5 bg-dots dark:bg-dots">
                         <SideBar data={data} setData={setData} onChangeHandler={onChangeHandler} handleChange={handleChange} image={image} setImage={setImage} content={content || ''} use={"Publish"} />
 
