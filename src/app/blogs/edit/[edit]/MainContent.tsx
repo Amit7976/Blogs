@@ -291,11 +291,11 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
                 </div >
             ) : (
                 <>
-                    <HeaderForBlog />
+                    <HeaderForBlog back={true} />
 
                     <div className="w-full relative top-0">
                         <form onSubmit={onSubmitHandler}>
-                            <div className="rounded-xl dark:bg-neutral-900 grid grid-cols-12 gap-5 p-5 bg-dots dark:bg-dots">
+                            <div className="dark:bg-neutral-900 flex flex-col-reverse lg:grid lg:grid-cols-12 gap-5 lg:p-5 bg-dots dark:bg-dots">
 
                                 <SideBar
                                     data={{
@@ -318,25 +318,22 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
                                 />
 
 
-                                <div className="pt-0 py-4 sm:pb-2 col-span-9 w-5xl mx-auto">
-                                    <div className="pt-0 py-4 sm:pb-2 col-span-9 w-5xl mx-auto">
-                                        <div className="space-y-4 sm:space-y-0 border-4 mt-5 rounded-2xl overflow-hidden border-gray-200 shadow-xl">
+                                <div className="pt-0 py-4 sm:pb-2 lg:col-span-9 w-full max-w-5xl mx-auto">
+                                        <div className="border-4 lg:mt-5 lg:rounded-2xl overflow-hidden border-gray-200 dark:border-neutral-700 lg:shadow-xl">
 
-                                            {/* Blog Title */}
-                                            <div className=''>
-                                                <Textarea autoFocus name='title' onChange={onChangeHandler} value={data.title || ''} className="px-10 py-12 h-full w-full rounded-none bg-white text-5xl font-bold leading-14 border-0 outline-none border-b-4 tracking-wider border-slate-100 ring-orange-500 placeholder:text-gray-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 focus-visible:ring-0 resize-none shadow-none" placeholder="Title"></Textarea>
-                                            </div>
-                                            {/* End Blog Title */}
-
-
-                                            <div className="w-full mx-auto p-0">
-                                                <RichTextEditor content={content || ''} onChange={onContentChange} />
-                                            </div>
-
+                                        {/* Blog Title */}
+                                        <div className=''>
+                                            <Textarea autoFocus name='title' onChange={onChangeHandler} value={data.title || ''} className="p-5 lg:px-10 lg:py-12 h-full w-full rounded-none bg-white text-5xl font-bold leading-14 border-0 outline-none border-b-4 tracking-wider border-gray-200 ring-orange-500 placeholder:text-gray-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 focus-visible:ring-0 resize-none shadow-none" placeholder="Title"></Textarea>
                                         </div>
+                                        {/* End Blog Title */}
+
+
+                                        <div className="w-full mx-auto p-0">
+                                            <RichTextEditor content={content || ''} onChange={onContentChange} />
+                                        </div>
+
                                     </div>
                                 </div>
-
                             </div>
                         </form>
                     </div>

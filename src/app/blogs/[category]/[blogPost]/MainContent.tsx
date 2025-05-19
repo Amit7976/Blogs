@@ -71,18 +71,19 @@ function MainContent({ resolvedParams }: blogsProps) {
     return (
         <>
             <div className="w-full px-4 sm:px-6 lg:py-16 lg:px-28 mx-auto relative">
-                <div className="grid lg:grid-cols-3 gap-y-8 lg:gap-y-0 lg:gap-x-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-y-8 lg:gap-y-0 lg:gap-x-6">
 
-                    <div className="lg:col-span-2">
+                    <div className="col-span-1 lg:col-span-2">
                         <div className="">
                             <div className="space-y-5 lg:space-y-8">
                                 <Button
                                     variant={"ghost"}
                                     onClick={() => router.back()}
-                                    className="inline-flex items-center gap-x-1.5 text-sm text-gray-600 decoration-2 dark:text-blue-500 select-none"
+                                    className="inline-flex items-center gap-x-1.5 mt-2 text-sm text-gray-600 decoration-2 dark:text-gray-500 select-none"
+                                    style={{ padding: 0 }}
                                 >
                                     <IoChevronBackOutline className="flex-shrink-0 size-4" />
-                                    Back to Blog
+                                    Back to Blogs
                                 </Button>
 
                                 {blogLoading ? (
@@ -121,7 +122,7 @@ function MainContent({ resolvedParams }: blogsProps) {
                                         </figure>
 
 
-                                        <section className="my-10 space-y-5 md:space-y-8">
+                                        <section className="my-10 space-y-5 md:space-y-8 text-ellipsis overflow-x-auto pb-5">
                                             {data && (<div dangerouslySetInnerHTML={{ __html: data.description }} />)}
                                         </section>
 
@@ -130,7 +131,7 @@ function MainContent({ resolvedParams }: blogsProps) {
                                             {itemsArray && itemsArray.map((item, index) => (
                                                 <p
                                                     key={index}
-                                                    className="m-0.5 inline-flex items-center gap-1.5 py-2 px-6 rounded-lg text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-200"
+                                                    className="m-0.5 inline-flex w-fit items-center gap-1.5 py-2 px-6 rounded-lg text-sm bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-200"
                                                 >
                                                     {item}
                                                 </p>

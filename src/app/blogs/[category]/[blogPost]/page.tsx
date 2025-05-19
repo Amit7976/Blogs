@@ -1,22 +1,22 @@
-"use client";
 import Footer from "@/components/MainUi/Footer/Footer";
 import HeaderForBlog from "@/components/MainUi/Header/HeaderForBlog";
-import { use } from "react";
 import MainContent from "./MainContent";
 import RelatedBlogs from "./RelatedBlogs";
+import Header from "@/components/MainUi/Header/Header";
+import { auth } from "@/nextAuth/auth";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-export default function Page({ params }: { params: Promise<{ blogPost: string }> }) {
+export default async function Page({ params }: { params: { blogPost: string } }) {
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  const resolvedParams = use(params);
+  const session = await auth();
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,16 +27,16 @@ export default function Page({ params }: { params: Promise<{ blogPost: string }>
 
       <div className="bg-white dark:bg-neutral-900">
 
-        <HeaderForBlog />
+        {!session?.user ? <Header position="sticky" /> : <HeaderForBlog />}
 
-        <MainContent resolvedParams={{ blogPost: resolvedParams.blogPost }} />
+        <MainContent resolvedParams={{ blogPost: (await params).blogPost }} />
 
-        <RelatedBlogs resolvedParams={{ blogPost: resolvedParams.blogPost }} />
+        <RelatedBlogs resolvedParams={{ blogPost: params.blogPost }} />
 
         <Footer />
 
       </div>
-      
+
     </>
   );
 }

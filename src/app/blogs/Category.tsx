@@ -60,7 +60,7 @@ function Category() {
 
     return (
         <>
-            <section className='p-28 py-5 mb-10'>
+            <section className='p-10 sm:p-16 lg:p-28 py-5 mb-10'>
                 <h3 className='text-3xl font-bold'>Popular Category</h3>
                 <div className="flex items-center gap-x-5 gap-y-3 flex-wrap my-10">
                     {loadingCategories ? (

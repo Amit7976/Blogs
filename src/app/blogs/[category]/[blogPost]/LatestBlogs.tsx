@@ -1,3 +1,4 @@
+"use client"
 import { Skeleton } from '@/components/ui/skeleton';
 import axios from 'axios';
 import Image from 'next/image';

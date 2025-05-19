@@ -131,7 +131,7 @@ function SideBar({ data, setData, onChangeHandler, handleChange, image, setImage
 
     return (
         <>
-            <div className="pt-20 p-4 sm:p-7 col-span-3 bg-white dark:bg-neutral-900 shadow-2xl rounded-2xl h-screen overflow-y-scroll sticky top-0">
+            <div className="pt-20 p-4 sm:p-7 col-span-3 bg-white dark:bg-neutral-900 shadow-2xl rounded-2xl h-full lg:h-screen lg:overflow-y-scroll sticky top-0">
                 <div className="space-y-4 sm:space-y-6">
                     <div className="space-y-4">
                         <label htmlFor="upload-images" className="inline-block text-lg font-medium text-gray-800 mt-2.5 dark:text-neutral-200">

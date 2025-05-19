@@ -43,7 +43,7 @@ export default function RichTextEditor({
         editorProps: {
             attributes: {
                 class: isEditable
-                    ? "h-dvh w-full border-0 rounded-b-md bg-white dark:bg-neutral-800 py-14 px-5 text-xl outline-none"
+                    ? "h-dvh overflow-y-scroll w-full border-0 rounded-b-md bg-gray-50 dark:bg-neutral-800 py-14 px-5 text-xl outline-none"
                     : "",
             },
         },

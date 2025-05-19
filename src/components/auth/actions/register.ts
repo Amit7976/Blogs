@@ -8,10 +8,10 @@ import { redirect } from "next/navigation";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const credentialsSignUp = async (
-  firstName: String,
-  lastName: String,
-  email: String,
-  password: any
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string
 ) => {
   // CONNECT TO THE DATABASE
   try {

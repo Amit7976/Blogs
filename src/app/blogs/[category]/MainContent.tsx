@@ -74,7 +74,7 @@ export default function MainContent({ params }: { params: Promise<{ category: st
     return (
         <>
             <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20 mx-auto">
-                <h4 className="mb-16 mt-0 text-4xl font-bold tracking-wide capitalize">
+                <h4 className="mb-16 mt-0 text-2xl lg:text-4xl font-bold tracking-wide capitalize">
                     {decodeURIComponent(resolvedParams.category)} <span className="text-gray-500">Blogs</span>
                 </h4>
                 <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10">

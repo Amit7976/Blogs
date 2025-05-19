@@ -92,7 +92,7 @@ const SignUpForm = () => {
                 className="mt-10"
             >
                 <div className="space-y-5">
-                    <div className="w-full py-2 grid grid-cols-2 items-center gap-5">
+                    <div className="w-full py-2 grid grid-cols-1 sm:grid-cols-2 items-center gap-5">
                         <div className="space-y-2">
                             <label htmlFor="firstName" className="text-sm font-medium text-gray-500 pl-5">
                                 First name
@@ -138,7 +138,7 @@ const SignUpForm = () => {
                         </div>
                     </div>
 
-                    <div className="w-full py-2 grid grid-cols-2 items-center gap-5">
+                    <div className="w-full py-2 grid grid-cols-1 sm:grid-cols-2 items-center gap-5">
                         <div className="space-y-2">
                             <label htmlFor="password" className="text-sm font-medium text-gray-500 pl-5">
                                 Password

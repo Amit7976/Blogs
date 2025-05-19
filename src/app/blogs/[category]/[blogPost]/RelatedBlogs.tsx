@@ -1,3 +1,4 @@
+"use client"
 import { Skeleton } from '@/components/ui/skeleton';
 import axios from 'axios';
 import Image from 'next/image';
@@ -80,7 +81,7 @@ function RelatedBlogs({ resolvedParams }: RelatedBlogsProps) {
     return (
         <>
             <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-                <div className="text-start mb-10 lg:my-10 px-6 w-fit">
+                <div className="text-start mb-10 lg:my-10 sm:px-6 w-fit">
                     <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
                         Related Blogs
                     </h2>
@@ -89,13 +90,13 @@ function RelatedBlogs({ resolvedParams }: RelatedBlogsProps) {
 
                 <div
                     className="h-auto">
-                    <div className="flex">
+                    <div className="flex flex-wrap">
                         {relatedBlogsLoading ? (
                             Array.from({ length: 3 }).map((_, index) => (
                                 <RelatedBlogPlaceholder key={index} />
                             ))
                         ) : (relatedBlogs.map((RelatedBlog, index) => (
-                            <div key={index} className="basis-1/3 pl-5 flex-grow">
+                            <div key={index} className="w-full lg:basis-1/3 lg:pl-5 lg:flex-grow">
                                 <div
                                     data-aos="fade-up"
                                     data-aos-offset="0"
@@ -104,10 +105,9 @@ function RelatedBlogs({ resolvedParams }: RelatedBlogsProps) {
                                     data-aos-easing="ease"
                                     data-aos-mirror="false"
                                     data-aos-once="true"
-                                    className="w-full rounded-xl flex flex-col h-full min-h-[330px]"
+                                    className="w-full rounded-xl flex flex-col h-full min-h-[330px] shrink-0"
                                 >
-                                    <a
-                                        className="group hover:bg-gray-100 rounded-xl p-5 transition-all dark:hover:bg-white/10"
+                                    <a className="group hover:bg-gray-100 rounded-xl p-5 transition-all dark:hover:bg-white/10"
                                         href={`/blogs/${RelatedBlog.category}/${RelatedBlog._id}`}>
                                         <div className="aspect-w-16 aspect-h-10">
                                             <Image

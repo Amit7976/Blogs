@@ -55,13 +55,14 @@ function Footer() {
     <footer className="bg-white dark:bg-neutral-900 text-black mt-40 p-0 lg:p-10">
       <div className="container mx-auto lg:px-4">
         <div className="bg-gray-100 dark:bg-neutral-800 text-black rounded-xl p-9 my-10 ">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8"><Link href="/" className="flex items-center gap-2 " prefetch={false}>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+            <Link href="/" className="flex items-center gap-2 " prefetch={false}>
             <Image
               src="/images/logo/electricIcon.svg"
               alt="Jobboost Logo"
               width={200}
               height={35}
-              className={"w-2 sm:w-3 md:w-10"}
+              className={"w-8 sm:w-3 md:w-10"}
             />
             <span className="text-2xl font-bold text-black dark:text-white">Assignment</span>
           </Link>
@@ -114,7 +115,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="w-full border-t border-gray-600 py-10">
+        <div className="w-full border-t border-gray-600 px-5 lg:px-0 py-10">
           <p className="mt-2 font-medium text-sm text-gray-500"> © 2023 <Link href={"/"}>assignment</Link> .{" "} <Link href={"/"}>assignment</Link> and the{" "} <Link href={"/"}>assignment</Link> logo are registered trademarks of the company. All services are currently available only within India. For any inquiries or support, please contact us through our{" "} <Link href={"https://portfolio-amit7976s-projects.vercel.app/contact"} className="text-[#FF4A02]">  Contact Page </Link> . Please see our Terms of Service for more details.</p>
           <p className="mt-5 font-medium text-sm text-gray-500">Read our Community Guidelines and Privacy Policy to understand how we operate and manage your information. For detailed information on how we protect your data, visit our Privacy Policy . By using our services, you agree to our Terms of Service . Thank you for choosing Us.</p>
         </div>

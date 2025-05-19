@@ -13,21 +13,30 @@ import { signOut } from "next-auth/react";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-export default function Sidebar({ session }: { session: any }) {
+interface SessionProps {
+    session: {
+        user?: {
+            name?: string | null;
+            email?: string | null;
+        };
+    };
+  }
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+export default function Sidebar({ session }: SessionProps) {
 
     const handleLogout = async () => {
-      if (confirm("SAre you sure you want to Logout this account!")) {
-          await signOut({ redirect: false });
-          window.location.replace('/auth/login');
-      }
+        if (confirm("Are you sure you want to Logout this account!")) {
+            await signOut({ redirect: false });
+            window.location.replace('/auth/login');
+        }
     };
 
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    
     return (
-        <aside className='bg-white dark:bg-neutral-900 h-screen col-span-2 w-full rounded-r-xl'>
+        <aside className='bg-white dark:bg-neutral-900 h-screen col-span-6 lg:col-span-2 w-full rounded-r-xl'>
             <div className="md:col-span-3 pt-10 pb-5 px-4 flex flex-col justify-between h-full">
 
                 <Link href={"/"} className="flex items-center gap-2 w-full justify-center">

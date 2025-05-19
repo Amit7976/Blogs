@@ -1,4 +1,4 @@
-import SignUpForm from '@/components/candidateAuth/signUpForm'
+import SignUpForm from '@/components/auth/signUpForm'
 import Image from 'next/image'
 import { FaAnglesRight } from 'react-icons/fa6'
 import { SiTicktick } from 'react-icons/si'
@@ -9,17 +9,17 @@ import { SiTicktick } from 'react-icons/si'
 
 
 const MainContent = async () => {
-  
+
 
     return (
         <>
             <section className="bg-white dark:bg-neutral-900">
                 <div className="grid grid-cols-1 lg:grid-cols-7 items-stretch">
                     <div className="flex items-center justify-center px-4 pt-10 h-auto bg-white dark:bg-neutral-900 sm:px-6 lg:px-8 sm:py-16 lg:py-10 col-span-4">
-                        <div className="xl:w-full px-10">
+                        <div className="xl:w-full px-3 sm:px-10">
 
                             <h2 className="text-3xl font-bold leading-tight text-gray-400 sm:text-4xl flex flex-col gap-2"><span className='pl-3'>Register new</span><span className='text-6xl text-black dark:text-white'>Account</span></h2>
-                           
+
 
                             <SignUpForm />
 
@@ -30,8 +30,8 @@ const MainContent = async () => {
                     </div>
 
 
-                    <div className="w-full col-span-3 pt-6 pr-4 min-h-screen relative">
-                        <div className="flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-10 bg-gray-50 sm:px-6 lg:px-10 w-full rounded-3xl overflow-hidden min-h-screen sticky top-0">
+                    <div className="w-full col-span-3 pt-20 sm:p-4 lg:p-0 lg:pt-6 lg:pr-4 min-h-screen relative">
+                        <div className="flex items-end px-4 pb-10 pt-60 sm:pb-16 md:justify-center lg:pb-10 bg-gray-50 sm:px-6 lg:px-10 w-full sm:rounded-3xl overflow-hidden min-h-screen sticky top-0">
                             <div className="absolute inset-0">
                                 <Image
                                     className="object-cover w-full h-full"

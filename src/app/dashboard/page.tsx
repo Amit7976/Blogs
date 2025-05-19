@@ -1,40 +1,31 @@
 import { auth } from "@/nextAuth/auth";
-import MainContent from "./MainContent";
-import SideBar from "@/components/dashboard/SideBar";
 import { redirect } from "next/navigation";
+import MainContent from "./MainContent";
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-const page = async () => {
+const Page = async () => {
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     const session = await auth();
-
-    if (!session?.user) {
-        redirect("/auth/login")
-    }
+    if (!session?.user) redirect("/auth/login");
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     return (
-        <>
-            <div className="grid grid-cols-12 bg-white dark:bg-neutral-800">
-
-                <SideBar session={session} />
-
-                <MainContent />
-
+        <div className="grid grid-cols-12 bg-white dark:bg-neutral-800 relative">
+            <div className="col-span-12">
+                <MainContent session={session} />
             </div>
-        </>
-    )
-}
-
-export default page;
+        </div>
+    );
+};
+export default Page;

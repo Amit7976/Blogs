@@ -1,4 +1,4 @@
-import LoginForm from '@/components/candidateAuth/loginForm'
+import LoginForm from '@/components/auth/loginForm'
 import Image from 'next/image'
 import { FaAnglesRight } from 'react-icons/fa6'
 
@@ -8,11 +8,11 @@ import { FaAnglesRight } from 'react-icons/fa6'
 
 
 const MainContent = async () => {
-    
+
 
     return (
         <>
-            <section className='pt-16'>
+            <section className='pt-16 px-5'>
                 <div className='w-full max-w-xl mx-auto'>
                     <h2 className='text-6xl font-medium text-center leading-[65px] font-serif'>
                         <span className="relative p-4 py-8">
