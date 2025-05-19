@@ -42,6 +42,8 @@ This is a full-stack blog editing and publishing platform built with **Next.js +
 * 🧾 Draft & Published separation with filtering and search
 * 📁 Image upload and preview
 * 🔎 Related and latest blogs suggestion
+* 📱 Responsive Design (Mobile, Tab, PC)
+* 🌙 Dark Mode available 
 * 📌 Category-based blog exploration
 * 📤 Axios used for all API communication
 
