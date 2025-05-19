@@ -19,7 +19,7 @@ export type paramsType = Promise<{ blogPost: string }>;
 
 export default async function Page(props: { params: paramsType }) {
 
-  
+
   const { blogPost } = await props.params;
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +35,8 @@ export default async function Page(props: { params: paramsType }) {
     <>
 
       <div className="bg-white dark:bg-neutral-900">
+
+        <h1>The Blog Post Id is: {blogPost}</h1>
 
         {!session?.user ? <Header position="sticky" /> : <HeaderForBlog />}
 
