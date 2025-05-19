@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connect from '@/dbConfig/dbConfig'
 import BlogModel from '@/models/blogModel'
 
@@ -23,7 +23,7 @@ LoadDb();
 
 
 // GET BLOG DATA
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
   const rawCategory = request.nextUrl.searchParams.get("category");
 
   if (rawCategory) {
@@ -45,8 +45,8 @@ export async function GET(request: any) {
       //-----------------------------------------------------------------------
 
       return NextResponse.json({ blogs });
-    } catch (error: any) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error) {
+      return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
 
   } else {
@@ -76,8 +76,8 @@ export async function GET(request: any) {
       //-----------------------------------------------------------------------
 
       return NextResponse.json({ categories });
-    } catch (error: any) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error) {
+      return NextResponse.json({ error: (error as Error).message }, { status: 500 });
     }
   }
 }

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connect from "@/dbConfig/dbConfig";
 import BlogModel from "@/models/blogModel";
 import { writeFile, unlink } from "fs/promises";
@@ -25,7 +25,7 @@ LoadDb();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // GET BLOG DATA
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
   try {
     const blogID = request.nextUrl.searchParams.get("blogPost");
     const session = await auth();
@@ -78,7 +78,7 @@ export async function GET(request: any) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /// POST BLOG DATA
-export async function POST(request: any) {
+export async function POST(request: NextRequest) {
   const session = await auth();
   const userId = session?.user?.id;
   if (!userId) {
@@ -97,10 +97,14 @@ export async function POST(request: any) {
   const image = formData.get("image");
   let imgUrl = "/defaultBlog.png";
   if (image) {
-    const imageByteData = await image.arrayBuffer();
-    const buffer = Buffer.from(imageByteData);
-    const path = `./public/images/blogs/${timeStamp}_${image.name}`;
-    await writeFile(path, buffer);
+    if (image instanceof File) {
+      const imageByteData = await image.arrayBuffer();
+      const buffer = Buffer.from(imageByteData);
+      const path = `./public/images/blogs/${timeStamp}_${image.name}`;
+      await writeFile(path, buffer);
+    } else {
+      throw new Error("Invalid image file");
+    }
     imgUrl = `/${timeStamp}_${image.name}`;
   }
 
@@ -138,7 +142,7 @@ export async function POST(request: any) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // UPDATE BLOG
-export async function PUT(request: any) {
+export async function PUT(request: NextRequest) {
   try {
     const formData = await request.formData();
     const blogId = formData.get("blogId");
@@ -177,7 +181,7 @@ export async function PUT(request: any) {
     const newImage = formData.get("image");
 
     // Handle image upload
-    if (newImage && newImage.size > 0) {
+    if (newImage instanceof File && newImage.size > 0) {
       const imageByteData = await newImage.arrayBuffer();
       const buffer = Buffer.from(imageByteData);
       const imagePath = path.join(
@@ -195,6 +199,12 @@ export async function PUT(request: any) {
       }
 
       imgUrl = `/${timeStamp}_${newImage.name}`;
+    } else {
+      console.error("Invalid image file");
+      return NextResponse.json(
+        { success: false, msg: "Invalid image file" },
+        { status: 400 }
+      );
     }
 
     //-----------------------------------------------------------------------
@@ -229,7 +239,7 @@ export async function PUT(request: any) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /// DELETE BLOG
-export async function DELETE(request: any) {
+export async function DELETE(request: NextRequest) {
   try {
     const session = await auth();
     const userId = session?.user?.id;
@@ -290,8 +300,12 @@ export async function DELETE(request: any) {
       success: true,
       msg: "Blog deleted successfully",
     });
-  } catch (error: any) {
-    console.error(`Error deleting blog: ${error.message}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`Error deleting blog: ${error.message}`);
+    } else {
+      console.error("Error deleting blog:", error);
+    }
     return NextResponse.json(
       { success: false, msg: "Failed to delete blog" },
       { status: 500 }

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connect from '@/dbConfig/dbConfig'
 import BlogModel from '@/models/blogModel'
 
@@ -22,7 +22,7 @@ LoadDb();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
     const blogID = request.nextUrl.searchParams.get("blogPost");
 
     if (blogID) {
@@ -97,8 +97,11 @@ export async function GET(request: any) {
           //-----------------------------------------------------------------------
 
           return NextResponse.json({ relatedBlogs: uniqueBlogs });
-        } catch (error: any) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
+        } catch (error) {
+            return NextResponse.json(
+              { error: (error as Error).message },
+              { status: 500 }
+            );
         }
     } else {
         return NextResponse.json({ error: 'Blog ID is required' }, { status: 400 });

@@ -8,7 +8,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import React, { use, useCallback, useEffect, useRef, useState } from 'react';
 import { toast } from "sonner";
-import preventReload from '@/components/blogAction/preventReload';
+import usePreventReload from '@/components/blogAction/usePreventReload';
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
     const [isDirty, setIsDirty] = useState(true);
 
     // Prevent Reload
-    preventReload({ isDirty });
+    usePreventReload({ isDirty });
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
     const [lastSavedData, setLastSavedData] = useState<Partial<Blog>>({});
     const [lastSavedContent, setLastSavedContent] = useState<string>("");
     const [saveTimeout, setSaveTimeout] = useState<NodeJS.Timeout | null>(null);
-    const [notOwn, setNotOwn] = useState<Boolean | null>(false);
+    const [notOwn, setNotOwn] = useState<boolean | null>(false);
     const dataRef = useRef(data);
     const contentRef = useRef(content);
     const lastSavedDataRef = useRef(lastSavedData);
@@ -319,7 +319,7 @@ export default function MainContent({ params }: { params: Promise<{ edit: string
 
 
                                 <div className="pt-0 py-4 sm:pb-2 lg:col-span-9 w-full max-w-5xl mx-auto">
-                                        <div className="border-4 lg:mt-5 lg:rounded-2xl overflow-hidden border-gray-200 dark:border-neutral-700 lg:shadow-xl">
+                                    <div className="border-4 lg:mt-5 lg:rounded-2xl overflow-hidden border-gray-200 dark:border-neutral-700 lg:shadow-xl">
 
                                         {/* Blog Title */}
                                         <div className=''>

@@ -1,3 +1,4 @@
+"use client"
 import { useEffect } from "react";
 
 
@@ -5,7 +6,7 @@ import { useEffect } from "react";
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-export default function preventReload({ isDirty }: { isDirty: boolean }) {
+export default function usePreventReload({ isDirty }: { isDirty: boolean }) {
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       if (isDirty) {

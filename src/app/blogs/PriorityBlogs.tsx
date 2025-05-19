@@ -37,7 +37,7 @@ function PriorityBlogPlaceholder() {
 
 interface CategoryProps {
     blogs: Blog[];
-    loadingBlogs: Boolean;
+    loadingBlogs: boolean;
 }
 
 

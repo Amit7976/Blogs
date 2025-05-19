@@ -19,7 +19,7 @@ LoadDb();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // GET BLOG DATA
-export async function GET(request: any) {
+export async function GET() {
   const latestBlogs = await BlogModel.find({ status: { $ne: "draft" } })
     .sort({ date: -1 })
     .limit(5)

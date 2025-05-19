@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import connect from "@/dbConfig/dbConfig";
 import BlogModel from "@/models/blogModel";
 
@@ -19,7 +19,7 @@ LoadDb();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // GET BLOG DATA
-export async function GET(request: any) {
+export async function GET(request: NextRequest) {
   const blogID = request.nextUrl.searchParams.get("blogPost");
   
   if (blogID) {

@@ -6,9 +6,9 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import SideBar from '@/components/SideBar';
 import useAutoSaveDraft from '@/components/blogAction/useAutoSave';
-import handleLocalstorage from '@/components/blogAction/handleLocalstorage';
-import extractBlogId from '@/components/blogAction/extractBlogId';
-import preventReload from '@/components/blogAction/preventReload';
+import useHandleLocalstorage from '@/components/blogAction/useHandleLocalstorage';
+import useExtractBlogId from '@/components/blogAction/useExtractBlogId';
+import usePreventReload from '@/components/blogAction/usePreventReload';
 import axios from 'axios';
 import { toast } from 'sonner';
 
@@ -45,14 +45,14 @@ function MainContent() {
 
 
     // Prevent Reload
-    preventReload({ isDirty });
+    usePreventReload({ isDirty });
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     // Extract BlogId from hash
-    extractBlogId({ setDataLoading, setHashValue, setBlogId });
+    useExtractBlogId({ setDataLoading, setHashValue, setBlogId });
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ function MainContent() {
 
 
     // Get Data from LOCAL STORAGE
-    handleLocalstorage({ hashValue, setDataLoading, setData, setContent });
+    useHandleLocalstorage({ hashValue, setDataLoading, setData, setContent });
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

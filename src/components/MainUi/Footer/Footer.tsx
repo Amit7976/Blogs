@@ -40,7 +40,7 @@ function Footer() {
 
   // POST SUBSCRIBER EMAIL WHEN SUBMIT THE FORM
   const [loading, setLoading] = useState(false);
-  async function onSubmit(formData: z.infer<typeof FormSchema>) {
+  async function onSubmit() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -52,9 +52,9 @@ function Footer() {
 
 
   return (
-    <footer className="bg-white dark:bg-neutral-900 text-black mt-40 p-0 lg:p-10">
+    <footer className="bg-white dark:bg-neutral-900 text-black mt-0 p-0 lg:p-10">
       <div className="container mx-auto lg:px-4">
-        <div className="bg-gray-100 dark:bg-neutral-800 text-black rounded-xl p-9 my-10 ">
+        <div className="bg-gray-100 dark:bg-neutral-800 text-black rounded-xl p-9 mb-10 ">
           <div className="flex flex-col md:flex-row justify-between items-center gap-10">
             <Link href="/" className="flex items-center gap-2 " prefetch={false}>
             <Image
@@ -125,4 +125,3 @@ function Footer() {
 }
 
 export default Footer;
-``

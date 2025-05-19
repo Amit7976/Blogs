@@ -1,18 +1,17 @@
 "use client"
+import Card from "@/components/dashboard/Card";
+import Sidebar from "@/components/dashboard/SideBar";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { ModeToggle } from "@/components/ui/ModeToggle";
+import { Blog } from "@/lib/utils";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { LuListFilter } from "react-icons/lu";
-import Card from "@/components/dashboard/Card";
-import { Blog } from "@/lib/utils";
-import { ModeToggle } from "@/components/ui/ModeToggle";
-import Sidebar from "@/components/dashboard/SideBar";
-import { FiSidebar } from "react-icons/fi";
 import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
 
 
@@ -121,13 +120,14 @@ function MainContent({ session }: SessionProps) {
 
   return (
     <>
-      <div className={`${sidebarOpen ? 'inset-0 z-40 bg-black/40 opacity-100 duration-1000 pointer-events-auto' : 'pointer-events-none opacity-0'} fixed h-screen`} onClick={() => setSidebarOpen(false)}>
+      <div className={`${sidebarOpen ? 'inset-0 z-40 bg-black/40 opacity-100 duration-1000 pointer-events-auto cursor-pointer' : 'pointer-events-none opacity-0'} fixed h-screen`} onClick={() => setSidebarOpen(false)}>
         <div
-          className={`${sidebarOpen ? 'left-0 fixed'  : '-left-full'} top-0 duration-500 z-50 w-64 h-full bg-white dark:bg-neutral-900 shadow-xl`}
+          className={`${sidebarOpen ? 'left-0 fixed'  : '-left-full'} top-0 duration-500 z-50 w-72 h-full bg-white dark:bg-neutral-900 shadow-xl cursor-auto`}
         >
           <Sidebar session={session} />
         </div>
       </div>
+
 
       <div className="px-4 py-10 sm:px-6 lg:px-4 lg:py-4 col-span-12 lg:col-span-10 overflow-y-scroll h-screen bg-slate-100 dark:bg-neutral-800">
         <div className="flex flex-col">
@@ -137,7 +137,7 @@ function MainContent({ session }: SessionProps) {
                 {/* Sub Header */}
                 <div className="px-3 lg:px-6 py-4 grid gap-3 lg:flex lg:justify-between lg:items-center border-b border-gray-200 dark:border-neutral-700">
                   <div className="flex gap-4 items-center">
-                    <Button variant={'ghost'} size={'icon'} className="shrink-0 lg:mt-1.5" onClick={() => setSidebarOpen(true)}>
+                    <Button variant={'ghost'} size={'icon'} className="shrink-0 lg:mt-1.5 cursor-pointer" onClick={() => setSidebarOpen(true)}>
                       <TbLayoutSidebarLeftExpand className="size-8" />
                     </Button>
                     <h2 className="text-4xl font-bold text-black dark:text-white">Dashboard</h2>

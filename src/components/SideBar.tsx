@@ -39,7 +39,7 @@ interface CategoriesResponse {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function SideBar({ data, setData, onChangeHandler, handleChange, image, setImage, content, use }: {
+function SideBar({ data, setData, onChangeHandler, handleChange, setImage, content, use }: {
     data: Blog;
     setData: React.Dispatch<React.SetStateAction<Blog>>;
     onChangeHandler: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
