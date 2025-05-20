@@ -84,7 +84,7 @@ export default function MenuBar({ editor }: { editor: Editor | null }) {
     ];
 
     return (
-        <div className="right-3 fixed z-50 bg-red-600">
+        <div className="right-3 fixed top-20 z-50 bg-red-600">
             <div className="rounded-md p-1 mb-1 bg-slate-100 dark:bg-neutral-800 space-x-2 space-y-2 z-50 absolute top-1 right-0 max-w-7xl border-2 border-orange-500">
                 {Options.map((option, index) => (
                     <Toggle

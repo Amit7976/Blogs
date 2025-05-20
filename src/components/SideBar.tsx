@@ -239,7 +239,7 @@ function SideBar({ data, setData, onChangeHandler, handleChange, setImage, conte
                 </div>
 
                 <div className="mt-16 mb-5 flex justify-center gap-x-2">
-                    <Button type="submit" onClick={handleChange} className="py-3 px-4 h-12 inline-flex w-full items-center gap-x-2 text-sm font-medium border border-transparent bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:bg-orange-700 disabled:opacity-50 disabled:pointer-events-none">
+                    <Button type="submit" onClick={handleChange} className="py-3 px-4 h-12 cursor-pointer inline-flex w-full items-center gap-x-2 text-sm font-medium border border-transparent bg-orange-600 text-white hover:bg-orange-700 focus:outline-none focus:bg-orange-700 disabled:opacity-50 disabled:pointer-events-none">
                         {use} Blog Post
                     </Button>
                 </div>

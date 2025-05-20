@@ -199,14 +199,8 @@ export async function PUT(request: NextRequest) {
       }
 
       imgUrl = `/${timeStamp}_${newImage.name}`;
-    } else {
-      console.error("Invalid image file");
-      return NextResponse.json(
-        { success: false, msg: "Invalid image file" },
-        { status: 400 }
-      );
     }
-
+    
     //-----------------------------------------------------------------------
 
     const updatedBlogData = {

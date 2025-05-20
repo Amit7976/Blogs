@@ -4,10 +4,8 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 type Blog = {
   title: string;
@@ -20,9 +18,7 @@ type Blog = {
   image: string | null;
 };
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 export default function useAutoSaveDraft({
   data,
@@ -34,7 +30,7 @@ export default function useAutoSaveDraft({
   setBlogId,
 }: {
   data: Blog;
-  content: string| null;
+  content: string | null;
   image: File | null;
   hashValue: string;
   setHashValue: (value: string) => void;
@@ -134,7 +130,7 @@ export default function useAutoSaveDraft({
     formData.append("description", contentRef.current || "");
     formData.append("category", dataRef.current.category);
     formData.append("tags", dataRef.current.tags);
-    formData.append("status", "draft");
+    formData.append("status", dataRef.current.status);
     formData.append("imageTitle", dataRef.current.imageTitle);
     if (imageRef.current) formData.append("image", imageRef.current);
 
@@ -227,14 +223,12 @@ export default function useAutoSaveDraft({
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
   useEffect(() => {
     debouncedSave();
     return () => debouncedSave.cancel();
   }, [data, content, image]);
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  
-  
+
   return { autoSaveDraft, createDraft };
 }

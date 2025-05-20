@@ -122,7 +122,7 @@ function MainContent({ resolvedParams }: blogsProps) {
                                         </figure>
 
 
-                                        <section className="my-10 space-y-5 md:space-y-8 text-ellipsis overflow-x-auto pb-5">
+                                        <section className="my-10 space-y-5 md:space-y-8 text-ellipsis overflow-x-auto pb-5 blogContent">
                                             {data && (<div dangerouslySetInnerHTML={{ __html: data.description }} />)}
                                         </section>
 

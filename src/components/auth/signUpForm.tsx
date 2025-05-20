@@ -183,9 +183,9 @@ const SignUpForm = () => {
                         <Button
                             variant="default"
                             type="submit"
-                            className="flex items-center justify-center gap-6 rounded-xl px-10 w-full h-14 text-sm hover:shadow-lg duration-500 bg-[#FC4C01]"
+                            className="flex items-center justify-center gap-6 cursor-pointer rounded-xl px-10 w-full h-14 text-sm hover:shadow-lg duration-500 bg-[#FC4C01]"
                         >
-                            Sign up your Jobboost Account
+                            Sign up your Blog Account
                             <FaArrowRightLong className="text-2xl" />
                         </Button>
                     </div>

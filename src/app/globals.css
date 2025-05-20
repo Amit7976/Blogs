@@ -128,7 +128,10 @@
   h3 {
     @apply text-xl font-bold;
   }
-
+  .blogContent p {
+    /* height: 40px; */
+    padding: 10px;
+  }
   .dark\:bg-dots {
     &:is(.dark *) {
       background-image: radial-gradient(rgb(47, 47, 47) 2px, transparent 5px);
