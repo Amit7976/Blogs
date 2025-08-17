@@ -3,7 +3,7 @@
 
 This is a full-stack blog editing and publishing platform built with **Next.js + TypeScript** and **MongoDB (Atlas)**. It includes rich features like **auto-save drafts**, **authentication**, **blog filtering**, and more.
 
-🌐 **Live Site**: [blog-website-next-app.vercel.app](https://blog-website-next-app.vercel.app)
+🌐 **Live Site**: [https://blogs.hirebie.com](https://blogs.hirebie.com)
 
 📦 **GitHub Repo**: [github.com/Amit7976/blog-website-next-app](https://github.com/Amit7976/blog-website-next-app)
 
